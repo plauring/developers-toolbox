@@ -1,0 +1,2 @@
+class DevtoolsController < ApplicationController
+end
