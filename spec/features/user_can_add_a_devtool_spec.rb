@@ -2,33 +2,33 @@ require 'rails_helper'
 
 feature 'A user can add a new dev tool' do
   context 'An authenticated user can add a dev tool' do
+    let!(:devtool1) {FactoryGirl.create(:devtool)}
     before { visit new_devtool_path }
     scenario 'The new page has a title, body and github text area' do
-      expect(page).to have_content("Dev Tool Title")
-      expect(page).to have_content("Dev Tool Body")
-      expect(page).to have_content("Dev Tool github link")
+      expect(page).to have_content("Title")
+      expect(page).to have_content("Body")
+      expect(page).to have_content("Github link")
     end
 
     scenario 'The user fills out the form incorrectly' do
-      click_button("Create devtool")
-      expect(page).to have_content("There is no title")
-      expect(page).to have_content("There is no body")
+      click_button("Add Dev Tool")
+      expect(page).to have_content("Title can't be blank")
+      expect(page).to have_content("Body can't be blank")
     end
 
-    scenario 'The user provides non-unqiue data'
-      let!(:devtool1) {FactoryGirl.create_list(:devtool)}
-      fill_in("Title", with "#{devtool1.title}")
-      fill_in("Body", with "#{devtool1.body}")
-      fill_in("Github Link", with "#{devtool1.github_link}")
-      click_button("Create devtool")
+    scenario 'The user provides non-unqiue data' do
+      fill_in("Title", with: devtool1.title)
+      fill_in("Body", with: devtool1.body)
+      fill_in("Github link", with: devtool1.github_link)
+      click_button("Add Dev Tool")
 
       visit new_devtool_path
-      fill_in("Title", with "#{devtool1.title}")
-      fill_in("Body", with "#{devtool1.body}")
-      fill_in("Github Link", with "#{devtool1.github_link}")
-      expect(page).to have_content("There is already a dev tool with this title")
-      expect(page).to have_content("There is already a dev tool that has this description")
-      expect(page).to have_content("There is already a dev tool with this github link")
+      fill_in("Title", with: "#{devtool1.title}")
+      fill_in("Body", with: "#{devtool1.body}")
+      fill_in("Github link", with: "#{devtool1.github_link}")
+      expect(page).to have_content("Title has already been taken")
+      expect(page).to have_content("Body has already been taken")
+      expect(page).to have_content("Github link has already been taken")
     end
   end
 end
