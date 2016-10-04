@@ -2,7 +2,7 @@ class Devtool < ActiveRecord::Base
   has_many :reviews
 
   validates :title, uniqueness: true, presence: true
-  validates :body, unqiueness: true, presence: true
+  validates :body, uniqueness: true, presence: true
   validates :github_link, uniqueness: true
 
   def rating

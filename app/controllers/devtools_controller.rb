@@ -1,2 +1,2 @@
-class Devtools < ApplicationController
+class DevtoolsController < ApplicationController
 end

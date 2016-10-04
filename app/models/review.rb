@@ -5,5 +5,6 @@ class Review < ActiveRecord::Base
 
   validates :title, presence: true
   validates :body, presence: true
-  validates :rating, presence: true, numericality: {minimum: 0, maximum: 5}
+  validates :rating, presence: true, numericality: {minimum: 1, maximum: 5}
+  validates :devtool_id, presence: true
 end
