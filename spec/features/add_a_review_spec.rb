@@ -10,6 +10,21 @@ feature 'A user can add a review to a Dev Tool' do
       expect(page).to have_content("Body")
       expect(page).to have_content("Rating")
     end
+
+    scenario 'The user fills out the form correctly' do
+      fill_in("Title", with: review1.title)
+      fill_in("Body", with: review1.body)
+      fill_in("Rating", with: review1.rating)
+      click_button("Create Review")
+      expect(page).to have_content("#{devtool1.title}")
+      expect(page).to have_content("#{devtool1.body}")
+      expect(page).to have_content("#{devtool1.github_link}")
+      expect(page).to have_content("#{review1.title}")
+      expect(page).to have_content("#{review1.body}")
+      expect(page).to have_content("#{review1.rating}")
+    end
+
+
     scenario 'The user fills out the form incorrectly' do
       fill_in("Title", with: "")
       fill_in("Body", with: "")

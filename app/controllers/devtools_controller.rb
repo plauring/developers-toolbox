@@ -6,7 +6,6 @@ class DevtoolsController < ApplicationController
   def show
     @devtool = Devtool.find(params[:id])
     @reviews = @devtool.reviews
-    @review = Review.new
   end
 
   def new

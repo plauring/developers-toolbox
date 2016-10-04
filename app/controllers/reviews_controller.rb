@@ -2,7 +2,7 @@ class ReviewsController < ApplicationController
 
   def new
    @devtool = Devtool.find(params[:devtool_id])
-   @review = Review.new(review_params)
+   @review = Review.new
    @review.devtool = @devtool
   end
 
@@ -23,8 +23,8 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:title, :body, :rating) if params[:status]
-  
+    params.require(:review).permit(:title, :body, :rating) 
+
   end
 
 end
