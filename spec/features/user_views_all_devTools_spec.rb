@@ -11,7 +11,7 @@ feature "views a list of all items" do
     end
 
     # scenario "guest only has guest privilages" do
-    #  expect(page).to not_have_content('Add a dev_tool')
+    #  expect(page).to not_have_content('Add a dev tool')
     #  expect(page).to not_have_content('delete button')
     #  expect(page).to have_content('Sign Up Button')
     # end

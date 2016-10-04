@@ -16,8 +16,10 @@ class DevTools < ApplicationController
   def create
     @devtool = Devtool.new(devtool_params)
     if @devtool.save
-      redirect_to devtool_path(@devtool.id), notice: "Dev Tool was posted"
+      flash[:notice] = "Devtool added successfully"
+      redirect_to devtool_path(@devtool.id)
     else
+      flash[:notice] = @devtool.errors.full_messages.join(",")
       @render 'new'
     end
   end
