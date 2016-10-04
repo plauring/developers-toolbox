@@ -1,0 +1,21 @@
+<%= form_for (@devtool) do |f| %>
+
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div>
+    <%= f.label :body %>
+    <%= f.text_field :body %>
+  </div>
+
+  <div>
+    <%= f.label :github_link %>
+    <%= f.text_field :github_link %>
+  </div>
+
+  <div>
+    <%= f.submit "Add Dev Tool" %>
+  </div>
+<% end %>

@@ -6,7 +6,7 @@ FactoryGirl.define do
     sequence(:email) { |n| "partyboy200#{n}@example.com"}
   end
 
-  factory :dev_tool do
+  factory :devtool do
     sequence(:title) { |n| "Tool #{n}" }
   end
 end

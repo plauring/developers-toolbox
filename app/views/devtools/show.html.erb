@@ -1,0 +1,12 @@
+<h1><%= @devtool.title %></h1>
+
+  <div> Dev Tool description <%= @devtool.body %></div>
+  <div> Dev Tool's Github <%= @devtool.github_link %></div>
+
+  <h1>Reviews</h1>
+  <div> <% @reviews.each do |review| %></div>
+    <li><%= review.title %></li>
+    <ul><%= review.body %></ul>
+  <% end %>
+
+<div><%= link_to "New Review", new_devtool_review_path(@devtool) %></div>
