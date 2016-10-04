@@ -29,11 +29,13 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'devise'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   gem 'pry-rails'
+  gem 'shoulda-matchers'
 end
 
 group :test do
@@ -43,7 +45,6 @@ group :test do
   gem 'capybara'
   gem 'launchy'
   gem 'valid_attribute'
-  gem 'shoulda-matchers', require: false
   gem 'database_cleaner'
 end
 
