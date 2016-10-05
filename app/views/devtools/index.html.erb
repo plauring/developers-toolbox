@@ -1,0 +1,5 @@
+<% @devtools.each do |devtool|%>
+  <li><%= link_to devtool.title, devtool_path(devtool) %></li>
+<% end %>
+
+<div><%= link_to "Add New Dev Tool", new_devtool_path %></div>
