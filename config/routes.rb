@@ -3,9 +3,10 @@ Rails.application.routes.draw do
   resources :devtools, only: [:index, :show, :new, :create] do
     resources :reviews, only: [:new, :create]
   end
+
   resources :reviews, only: [:new, :create] do
     member do
-    post 'upvote'
+    post 'upvote', 'downvote'
     end
   end
 

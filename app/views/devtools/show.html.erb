@@ -16,6 +16,13 @@
       <% end %>
     <% end %>
     <div><%= button_to "upvote", upvote_review_path(review.id) %></div>
+
+    <% review.votes.each do |vote| %>
+      <% if vote.status == false  %>
+        <div><%= pluralize(review.votes.length, "downvotes") %></div>
+      <% end %>
+    <% end %>
+    <div><%= button_to "downvote", downvote_review_path(review.id) %></div>
   <% end %>
 
 <div><%= link_to "New Review", new_devtool_review_path(@devtool) %></div>
