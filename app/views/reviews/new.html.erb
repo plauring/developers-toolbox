@@ -1,12 +1,13 @@
-<%= form_for [@devtool, @review] do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
 
-  <%= f.label :body %>
-  <%= f.text_field :body %>
+  <%= form_for [@devtool, @review] do |f| %>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
 
-  <%= f.label :rating %>
-  <%= f.text_field :rating %>
+    <%= f.label :body %>
+    <%= f.text_field :body %>
 
-  <%= f.submit "Create Review" %>
-<% end %>
+    <%= f.label :rating %>
+    <%= f.text_field :rating %>
+
+    <%= f.submit "Create Review" %>
+  <% end %>

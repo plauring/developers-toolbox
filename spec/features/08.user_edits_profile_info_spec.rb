@@ -6,7 +6,7 @@ feature 'authenticated user edits profile information' do
     click_link 'Sign Up'
     fill_in 'Username', with: 'Partyboy5000'
     fill_in 'Email', with: 'Partyboy5000@example.com'
-    fill_in "user_password", with: 'party4life'
+    fill_in 'user_password', with: 'party4life'
     fill_in 'Password Confirmation', with: 'party4life'
     click_button 'Sign Up'
   end
@@ -18,7 +18,7 @@ feature 'authenticated user edits profile information' do
 
     click_link 'Edit your profile'
     fill_in 'Email', with: 'Partygirl5000@example.com'
-    fill_in "user_password", with: 'party4life'
+    fill_in 'user_password', with: 'party4life'
     fill_in 'Password confirmation', with: 'party4life'
     fill_in 'Current password', with: 'party4life'
     click_button 'Update'
