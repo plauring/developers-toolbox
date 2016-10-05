@@ -17,7 +17,7 @@ feature 'A user can add a new dev tool' do
       fill_in("Body", with: "COOL GEM BODY")
       fill_in("Github link", with: "COOL GEM LINK")
       click_button("Add Dev Tool")
-      
+
       expect(page).to have_content("COOL GEM")
       expect(page).to have_content("COOL GEM BODY")
       expect(page).to have_content("COOL GEM LINK")
@@ -37,9 +37,9 @@ feature 'A user can add a new dev tool' do
       click_button("Add Dev Tool")
 
       visit new_devtool_path
-      fill_in("Title", with: "#{devtool1.title}")
-      fill_in("Body", with: "#{devtool1.body}")
-      fill_in("Github link", with: "#{devtool1.github_link}")
+      fill_in("Title", with: devtool1.title)
+      fill_in("Body", with: devtool1.body)
+      fill_in("Github link", with: devtool1.github_link)
       expect(page).to have_content("Title has already been taken")
       expect(page).to have_content("Body has already been taken")
       expect(page).to have_content("Github link has already been taken")

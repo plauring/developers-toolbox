@@ -23,7 +23,5 @@ feature 'authenticated user edits profile information' do
     fill_in 'Current password', with: 'party4life'
     click_button 'Update'
     expect(page).to have_content('Your account has been updated successfully')
-    
   end
-
 end
