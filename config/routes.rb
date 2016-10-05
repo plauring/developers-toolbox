@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   devise_for :users
 
   root "devtools#index"
+
+  resources :users, only: [:show]
 end
