@@ -10,6 +10,11 @@
     <li><%= review.title %></li>
     <li><%= review.body %></li>
     <li> <%= review.rating %></li>
+    <% review.votes.each do |vote| %>
+      <% if vote.status == true  %>
+        <div><%= pluralize(review.votes.length, "upvotes") %></div>
+      <% end %>
+    <% end %>
     <div><%= button_to "upvote", upvote_review_path(review.id) %></div>
   <% end %>
 

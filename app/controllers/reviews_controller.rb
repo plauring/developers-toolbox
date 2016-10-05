@@ -22,16 +22,16 @@ class ReviewsController < ApplicationController
 
   def upvote
     @review = Review.find(params[:id])
+
     if Vote.find_by(user_id: 1, review_id: @review.id).nil?
       Vote.create(user_id: 1, review_id: @review.id, status: true)
     else
-      if Vote.status == true
-        Vote.destroy
+      if Vote.find_by(user_id: 1, review_id: @review.id).status == true
+        Vote.find_by(user_id: 1, review_id: @review.id).destroy
       else
-        Vote.status = true
+        Vote.find_by(user_id: 1, review_id: @review.id).status = true
       end
     end
-binding.pry
   end
 
   private
