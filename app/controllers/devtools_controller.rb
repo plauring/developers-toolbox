@@ -23,6 +23,13 @@ class DevtoolsController < ApplicationController
     end
   end
 
+  def upvote
+    @devtool = Devtool.find(params[:id])
+    @reviews = @devtool.reviews.find(params[:id])
+    @devtool.upvote.create
+    redirect_to devtool_path(@devtool.id)
+  end
+
   private
 
     def devtool_params

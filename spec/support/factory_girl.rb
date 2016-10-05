@@ -20,5 +20,4 @@ FactoryGirl.define do
     sequence(:rating) { rand(1..5) }
     devtool
   end
-  factory :
 end
