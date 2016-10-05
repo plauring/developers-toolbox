@@ -18,7 +18,6 @@ describe User do
     user2.password_confirmation = 'anotherpassword'
 
     expect(user2).to_not be_valid
-    # Looking for an array that doesn't exist yet.
-    # expect(user.errors[:password_confirmation]).to_not be_blank
+    expect(user2.errors[:password_confirmation]).to_not be_blank
   end
 end

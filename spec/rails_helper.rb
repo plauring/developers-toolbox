@@ -59,3 +59,4 @@ end
 require "capybara/rails"
 require_relative 'support/factory_girl'
 require_relative 'support/user_factory'
+include Warden::Test::Helpers

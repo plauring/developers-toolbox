@@ -5,8 +5,6 @@ Rails.application.routes.draw do
   end
 
   devise_for :users
+
   root "devtools#index"
-
-  resources :users
-
 end
