@@ -7,6 +7,7 @@ feature 'user signs up', %Q{
 } do
 
   scenario 'specify valid and required information' do
+    logout(:user)
     visit root_path
     click_link 'Sign Up'
     fill_in "Username", with: "Partyboy5000"

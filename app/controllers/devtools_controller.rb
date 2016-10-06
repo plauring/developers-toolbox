@@ -1,5 +1,8 @@
 class DevtoolsController < ApplicationController
+  before_action :authorize_user, except:[:index, :show, :new, :create]
+
   def index
+
     @devtools = Devtool.all
   end
 
@@ -9,7 +12,13 @@ class DevtoolsController < ApplicationController
   end
 
   def new
-    @devtool = Devtool.new
+    @devtools = Devtool.all
+    if !user_signed_in?
+      flash[:notice] = 'Sign In or Sign Up to add a Dev tool for review.'
+      redirect_to root_path
+    else
+      @devtool = Devtool.new
+    end
   end
 
   def create
@@ -23,10 +32,23 @@ class DevtoolsController < ApplicationController
     end
   end
 
+  def destroy
+    @devtool = Devtool.find(params[:id])
+    @devtool.destroy
+    flash[:notice] = "Dev Tool Successfully Deleted!"
+    redirect_to devtools_path
+  end
+
   private
 
     def devtool_params
       params.require(:devtool).permit(:title, :body, :github_link)
+    end
+
+    def authorize_user
+      if !user_signed_in? || !current_user.admin?
+        raise ActionController::RoutingError.new("Where ya goin?!@")
+      end
     end
 
 end

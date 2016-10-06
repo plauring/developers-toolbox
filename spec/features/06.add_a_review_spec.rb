@@ -7,7 +7,7 @@ feature 'A user can add a review to a Dev Tool' do
   context 'An authenticated user can add a review to a dev tool' do
     before {
     user2 = FactoryGirl.create(:user)
-    login_as(user2, :scope => :user, :run_callbacks => false)
+    login_as(user2, scope: :user, run_callbacks: false)
     visit new_devtool_review_path(devtool1.id)
     }
     scenario 'The new review page has a title, and body' do

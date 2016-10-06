@@ -2,9 +2,15 @@ require 'rails_helper'
 
 feature 'A user can add a new dev tool' do
   context 'An authenticated user can add a dev tool' do
+
+    before {
+      user2 = FactoryGirl.create(:user)
+      login_as(user2, scope: :user, run_callbacks: false)
+      visit new_devtool_path
+    }
+
     let!(:devtool1) {FactoryGirl.create(:devtool)}
     let!(:devtool2) {FactoryGirl.create(:devtool)}
-    before { visit new_devtool_path }
     scenario 'The new page has a title, body and github text area' do
       expect(page).to have_content('Title')
       expect(page).to have_content('Body')

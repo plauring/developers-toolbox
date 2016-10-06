@@ -9,7 +9,5 @@ feature 'views a list of all items' do
         expect(page).to have_content(devtool.title)
       end
     end
-
-
   end
 end
