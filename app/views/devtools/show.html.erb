@@ -12,11 +12,13 @@
     <li> <%= review.rating %></li>
     <% review.votes.each do |vote| %>
       <% if vote.status == true  %>
-        <div><%= pluralize(review.votes.length, "upvotes") %></div>
+        <div><% @upvote = pluralize(review.votes.length, "upvote") %></div>
         <% else %>
-        <div><%= pluralize(review.votes.length, "downvotes") %></div>
+        <div><% @downvote = pluralize(review.votes.length, "downvote") %></div>
       <% end %>
     <% end %>
+    <div><%= @upvote %></div>
+    <div><%= @downvote %></div>
     <div><%= button_to "upvote", upvote_review_path(review.id) %></div>
     <div><%= button_to "downvote", downvote_review_path(review.id) %></div>
   <% end %>

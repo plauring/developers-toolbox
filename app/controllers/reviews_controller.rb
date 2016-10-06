@@ -22,32 +22,39 @@ class ReviewsController < ApplicationController
 
   def upvote
     @review = Review.find(params[:id])
-
-    if Vote.find_by(user_id: 1, review_id: @review.id).nil?
-      Vote.create(user_id: 1, review_id: @review.id, status: true)
-    else
-      if Vote.find_by(user_id: 1, review_id: @review.id).status == true
-        Vote.find_by(user_id: 1, review_id: @review.id).destroy
-      else
-        Vote.find_by(user_id: 1, review_id: @review.id).update(status: true)
+    @user = User.all
+    @user.each do |user|
+      @user = user.id
+        if Vote.find_by(user_id: @user, review_id: @review.id).nil?
+          Vote.create(user_id: @user, review_id: @review.id, status: true)
+        else
+          if Vote.find_by(user_id: @user, review_id: @review.id).status == true
+            Vote.find_by(user_id: @user, review_id: @review.id).destroy
+          else
+            Vote.find_by(user_id: @user, review_id: @review.id).update(status: true)
+          end
+        end
       end
-    end
   end
+    #!IMPORTANT NOTICE: Until devise functionality is merged and we can use 'current_user' we are using User.all[0] as a stop gap.
+
 
   def downvote
     @review = Review.find(params[:id])
-
-    if Vote.find_by(user_id: 1, review_id: @review.id).nil?
-      Vote.create(user_id: 1, review_id: @review.id, status: false)
-    else
-      if Vote.find_by(user_id: 1, review_id: @review.id).status == false
-        Vote.find_by(user_id: 1, review_id: @review.id).destroy
-      else
-        Vote.find_by(user_id: 1, review_id: @review.id).update(status: false)
+    @user = User.all
+    @user.each do |user|
+      @user = user.id
+        if Vote.find_by(user_id: @user, review_id: @review.id).nil?
+          Vote.create(user_id: @user, review_id: @review.id, status: false)
+        else
+          if Vote.find_by(user_id: @user, review_id: @review.id).status == false
+            Vote.find_by(user_id: @user, review_id: @review.id).destroy
+          else
+            Vote.find_by(user_id: @user, review_id: @review.id).update(status: false)
+          end
+        end
       end
-    end
   end
-
   private
 
   def review_params
