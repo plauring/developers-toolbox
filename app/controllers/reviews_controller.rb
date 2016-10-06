@@ -29,7 +29,7 @@ class ReviewsController < ApplicationController
       if Vote.find_by(user_id: 1, review_id: @review.id).status == true
         Vote.find_by(user_id: 1, review_id: @review.id).destroy
       else
-        Vote.find_by(user_id: 1, review_id: @review.id).status = true
+        Vote.find_by(user_id: 1, review_id: @review.id).update(status: true)
       end
     end
   end
@@ -43,7 +43,7 @@ class ReviewsController < ApplicationController
       if Vote.find_by(user_id: 1, review_id: @review.id).status == false
         Vote.find_by(user_id: 1, review_id: @review.id).destroy
       else
-        Vote.find_by(user_id: 1, review_id: @review.id).status = false
+        Vote.find_by(user_id: 1, review_id: @review.id).update(status: false)
       end
     end
   end

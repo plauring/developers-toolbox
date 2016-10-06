@@ -13,15 +13,11 @@
     <% review.votes.each do |vote| %>
       <% if vote.status == true  %>
         <div><%= pluralize(review.votes.length, "upvotes") %></div>
-      <% end %>
-    <% end %>
-    <div><%= button_to "upvote", upvote_review_path(review.id) %></div>
-
-    <% review.votes.each do |vote| %>
-      <% if vote.status == false  %>
+        <% else %>
         <div><%= pluralize(review.votes.length, "downvotes") %></div>
       <% end %>
     <% end %>
+    <div><%= button_to "upvote", upvote_review_path(review.id) %></div>
     <div><%= button_to "downvote", downvote_review_path(review.id) %></div>
   <% end %>
 
