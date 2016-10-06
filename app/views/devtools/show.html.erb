@@ -20,7 +20,7 @@
     <div>sum of votes: <%= @upvote.to_i - @downvote.to_i %></div>
 
 
-    <div><%= button_to "upvote", upvote_review_path(review.id) %></div>
+    <div, id="upvote-button"><%= button_to "upvote", upvote_review_path(review.id) %></div>
     <div><%= button_to "downvote", downvote_review_path(review.id) %></div>
   <% end %>
 
