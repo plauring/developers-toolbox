@@ -1,13 +1,18 @@
 require 'rails_helper'
+# Warden.test_mode!
 
 feature 'A user can add a review to a Dev Tool' do
   let!(:devtool1) {FactoryGirl.create(:devtool, id: 1)}
   let!(:review1) {FactoryGirl.create(:review, devtool_id: 1)}
-  user = FactoryGirl.create(:user)
-  login_as(user, :scope => :user)
   context 'An authenticated user can add a review to a dev tool' do
-    before { visit new_devtool_review_path(devtool1.id) }
+    before {
+    user2 = FactoryGirl.create(:user)
+    login_as(user2, :scope => :user, :run_callbacks => false)
+    visit new_devtool_review_path(devtool1.id)
+    }
     scenario 'The new review page has a title, and body' do
+      # binding.pry
+      # save_and_open_page
       expect(page).to have_content('Title')
       expect(page).to have_content('Body')
       expect(page).to have_content('Rating')
