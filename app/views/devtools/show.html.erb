@@ -1,5 +1,3 @@
-<h1>HELP</h1>
-
 <h1><%= @devtool.title %></h1>
 
   <div> Dev Tool description <%= @devtool.body %></div>
@@ -12,13 +10,16 @@
     <li> <%= review.rating %></li>
     <% review.votes.each do |vote| %>
       <% if vote.status == true  %>
-        <div><% @upvote = pluralize(review.votes.length, "upvote") %></div>
+        <div><% @upvote = review.votes.length %></div>
         <% else %>
-        <div><% @downvote = pluralize(review.votes.length, "downvote") %></div>
+        <div><% @downvote = review.votes.length %></div>
       <% end %>
     <% end %>
-    <div><%= @upvote %></div>
-    <div><%= @downvote %></div>
+    <div><%= pluralize(@upvote ||= 0, "upvote") %></div>
+    <div><%= pluralize(@downvote ||= 0, "downvote") %></div>
+    <div>sum of votes: <%= @upvote.to_i - @downvote.to_i %></div>
+
+
     <div><%= button_to "upvote", upvote_review_path(review.id) %></div>
     <div><%= button_to "downvote", downvote_review_path(review.id) %></div>
   <% end %>
