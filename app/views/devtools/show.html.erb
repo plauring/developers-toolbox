@@ -10,18 +10,24 @@
     <li> <%= review.rating %></li>
     <% review.votes.each do |vote| %>
       <% if vote.status == true  %>
-        <div><% @upvote = review.votes.length %></div>
+        <% @upvote = review.votes.length %>
         <% else %>
-        <div><% @downvote = review.votes.length %></div>
+        <% @downvote = review.votes.length %>
       <% end %>
+
     <% end %>
-    <div><%= pluralize(@upvote ||= 0, "upvote") %></div>
-    <div><%= pluralize(@downvote ||= 0, "downvote") %></div>
-    <div>sum of votes: <%= @upvote.to_i - @downvote.to_i %></div>
+
+    <div class="vote-buttons">
+      <div id="upcount"><%= pluralize(@upvote ||= 0, "upvote") %></div>
+      <%= button_to "upvote", upvote_review_path(review.id), class: 'upvoteButton' %>
+
+      <div id="downcount"><%= pluralize(@downvote ||= 0, "downvote") %></div>
+      <%= button_to "downvote", downvote_review_path(review.id), class: "downvoteButton" %>
+
+    </div>
+    <div id="sum">sum of votes: <%= @upvote.to_i - @downvote.to_i %></div>
 
 
-    <div, id="upvote-button"><%= button_to "upvote", upvote_review_path(review.id) %></div>
-    <div><%= button_to "downvote", downvote_review_path(review.id) %></div>
   <% end %>
 
 <div><%= link_to "New Review", new_devtool_review_path(@devtool) %></div>
