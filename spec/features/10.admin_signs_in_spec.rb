@@ -8,7 +8,10 @@ feature 'Admin signs into website' do
     scenario 'I can sign in and see a special message on the homepage' do
       devtools = FactoryGirl.create_list(:devtool, 5 )
       visit root_path
-      expect(page).to have_content('Welcome Super Elite Group 8 member, you are a member of an exclusive, Clandestineand, and Dope AF club.')
+      expect(page).to have_content( %Q{
+        Welcome Super Elite Group 8 member,
+        you are a member of an exclusive, Clandestineand,
+        and Dope AF club.} )
       devtools.each do |devtool|
         expect(page).to have_content('delete')
       end
@@ -61,8 +64,6 @@ feature 'Admin signs into website' do
       tool = FactoryGirl.create(:devtool)
       visit devtool_path(tool.id)
       expect(page).to_not have_content('delete')
-    end
-    scenario 'I do not have access to a list of users, and if i sneak in, I will get a 404' do
     end
   end
 end

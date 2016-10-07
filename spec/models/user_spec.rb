@@ -7,9 +7,20 @@ describe User do
   end
 
   it 'is not valid with non-valid attributes' do
-    expect(User.create(name: '', email: '2hard2party@example.com', password: '123qwe')).to_not be_valid
-    expect(User.create(name: 'partybody200', email: '', password: '123qwe')).to_not be_valid
-    expect(User.create(name: 'partybody200', email: '2hard2party@example.com', password: '')).to_not be_valid
+    expect(User.create(
+      name: '',
+      email: '2hard2party@example.com',
+      password: '123qwe')).to_not be_valid
+
+    expect(User.create(
+      name: 'partybody200',
+      email: '',
+      password: '123qwe')).to_not be_valid
+
+    expect(User.create(
+    name: 'partybody200',
+    email: '2hard2party@example.com',
+    password: '')).to_not be_valid
   end
 
   it 'has a matching password confirmation for the password' do

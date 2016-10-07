@@ -45,14 +45,13 @@ RSpec.configure do |config|
     Warden.test_mode!
   end
   config.after :each do
-   Warden.test_reset!
+    Warden.test_reset!
   end
 end
 
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
 end
-
 
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
