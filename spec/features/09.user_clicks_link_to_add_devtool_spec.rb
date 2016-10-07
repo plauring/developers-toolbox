@@ -1,11 +1,11 @@
 feature 'user click on add devtool' do
 
   context 'As and authenticated user' do
-    before {
+    before do
       user2 = FactoryGirl.create(:user)
       login_as(user2, scope: :user, run_callbacks: false)
       visit root_path
-    }
+    end
     scenario 'I can click the link and be taken to the create page' do
       click_link 'Add New Dev Tool'
 

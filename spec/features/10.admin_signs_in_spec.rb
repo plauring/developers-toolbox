@@ -1,9 +1,9 @@
 feature 'Admin signs into website' do
   context 'As an Admin' do
-    before {
+    before do
       admin = User.create(name: 'admin', email: 'specialemail@company.com', password: 'supersecret', role: 'admin' )
       login_as(admin, scope: :user, run_callbacks: false)
-    }
+    end
 
     scenario 'I can sign in and see a special message on the homepage' do
       devtools = FactoryGirl.create_list(:devtool, 5 )
@@ -63,7 +63,6 @@ feature 'Admin signs into website' do
       expect(page).to_not have_content('delete')
     end
     scenario 'I do not have access to a list of users, and if i sneak in, I will get a 404' do
-
     end
   end
 end

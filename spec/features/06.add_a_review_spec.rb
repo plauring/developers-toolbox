@@ -1,15 +1,15 @@
 require 'rails_helper'
-# Warden.test_mode!
+
 
 feature 'A user can add a review to a Dev Tool' do
-  let!(:devtool1) {FactoryGirl.create(:devtool, id: 1)}
-  let!(:review1) {FactoryGirl.create(:review, devtool_id: 1)}
+  let!(:devtool1) { FactoryGirl.create(:devtool, id: 1) }
+  let!(:review1) { FactoryGirl.create(:review, devtool_id: 1) }
   context 'An authenticated user can add a review to a dev tool' do
-    before {
-    user2 = FactoryGirl.create(:user)
-    login_as(user2, scope: :user, run_callbacks: false)
-    visit new_devtool_review_path(devtool1.id)
-    }
+    before do
+      user2 = FactoryGirl.create(:user)
+      login_as(user2, scope: :user, run_callbacks: false)
+      visit new_devtool_review_path(devtool1.id)
+    end
     scenario 'The new review page has a title, and body' do
       expect(page).to have_content('Title')
       expect(page).to have_content('Body')
@@ -28,7 +28,6 @@ feature 'A user can add a review to a Dev Tool' do
       expect(page).to have_content(review1.body)
       expect(page).to have_content(review1.rating)
     end
-
 
     scenario 'The user fills out the form incorrectly' do
       fill_in('Title', with: '')

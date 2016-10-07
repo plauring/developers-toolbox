@@ -34,7 +34,6 @@ class DevtoolsController < ApplicationController
   def destroy
     @devtool = Devtool.find(params[:id])
     dead_reviews = Review.where(devtool_id: params[:id] )
-    binding.pry
     if @devtool.destroy
       flash[:notice] = "Dev Tool Successfully Deleted!"
       dead_reviews.each do |review|
@@ -45,19 +44,18 @@ class DevtoolsController < ApplicationController
       flash[:errors] = devtool.errors
       redirect_to @devtool
     end
-    binding.pry
   end
 
   private
 
-    def devtool_params
-      params.require(:devtool).permit(:title, :body, :github_link)
-    end
+  def devtool_params
+    params.require(:devtool).permit(:title, :body, :github_link)
+  end
 
-    def authorize_user
-      if !user_signed_in? || !current_user.admin?
-        raise ActionController::RoutingError.new("Where ya goin?!@")
-      end
+  def authorize_user
+    if !user_signed_in? || !current_user.admin?
+      raise ActionController::RoutingError.new("Where ya goin?!@")
     end
+  end
 
 end
