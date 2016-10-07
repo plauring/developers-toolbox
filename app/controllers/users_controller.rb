@@ -1,8 +1,35 @@
 class UsersController < ApplicationController
   before_action :authorize_user,except:[:show]
 
+  def index
+    @admins = []
+    @non_admins = []
+    @users = User.all
+    @users.each do |user|
+      if user.admin?
+        @admins << user
+      else
+        @non_admins << user
+      end
+    end
+  end
+
   def show
     @user = User.find(params[:id])
+  end
+
+  def destroy
+    @users = User.all
+    @users.each do |user|
+      if user.admin?
+        flash[:error] = "You do not have the authority to complete this action"
+      elsif user.destroy
+        flash[:success] = "User deleted, we didn't like them anyway."
+      else
+        flash[:errors] = user.errors
+      end
+   end
+   redirect_to users_path
   end
 
 private

@@ -8,7 +8,7 @@ feature 'Admin signs into website' do
     scenario 'I can sign in and see a special message on the homepage' do
       devtools = FactoryGirl.create_list(:devtool, 5 )
       visit root_path
-      expect(page).to have_content('Welcome Super Elite Group 8 member, you are the coolest.')
+      expect(page).to have_content('Welcome Super Elite Group 8 member, you are a member of an exclusive, Clandestineand, and Dope AF club.')
       devtools.each do |devtool|
         expect(page).to have_content('delete')
       end
@@ -16,8 +16,6 @@ feature 'Admin signs into website' do
     scenario 'I can delete an item from the index page' do
       tool = FactoryGirl.create(:devtool)
       visit root_path
-      # binding.pry
-      # save_and_open_page
       click_link 'delete'
       expect(page).to_not have_content(tool.title)
     end
@@ -31,7 +29,7 @@ feature 'Admin signs into website' do
       tool = FactoryGirl.create(:devtool)
       review = FactoryGirl.create(:review, devtool: tool)
       visit devtool_path(tool.id)
-      click_link 'delete #{review.title}'
+      click_link "delete #{review.title}"
       expect(page).to have_content('Review Successfully Deleted!')
       expect(page).to_not have_content(review.title)
     end
@@ -46,7 +44,7 @@ feature 'Admin signs into website' do
     scenario 'I can delete a user from the list' do
       user = FactoryGirl.create(:user)
       visit users_path
-      click_link 'delete'
+      click_link "delete #{user.name}"
       expect(page).to_not have_content(user.name)
       expect(page).to have_content("User deleted, we didn't like them anyway.")
     end

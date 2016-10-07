@@ -11,8 +11,6 @@ feature 'A user can add a review to a Dev Tool' do
     visit new_devtool_review_path(devtool1.id)
     }
     scenario 'The new review page has a title, and body' do
-      # binding.pry
-      # save_and_open_page
       expect(page).to have_content('Title')
       expect(page).to have_content('Body')
       expect(page).to have_content('Rating')

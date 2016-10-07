@@ -2,7 +2,6 @@ class DevtoolsController < ApplicationController
   before_action :authorize_user, except:[:index, :show, :new, :create]
 
   def index
-
     @devtools = Devtool.all
   end
 
@@ -34,9 +33,19 @@ class DevtoolsController < ApplicationController
 
   def destroy
     @devtool = Devtool.find(params[:id])
-    @devtool.destroy
-    flash[:notice] = "Dev Tool Successfully Deleted!"
-    redirect_to devtools_path
+    dead_reviews = Review.where(devtool_id: params[:id] )
+    binding.pry
+    if @devtool.destroy
+      flash[:notice] = "Dev Tool Successfully Deleted!"
+      dead_reviews.each do |review|
+        review.destroy
+      end
+      redirect_to devtools_path
+    else
+      flash[:errors] = devtool.errors
+      redirect_to @devtool
+    end
+    binding.pry
   end
 
   private

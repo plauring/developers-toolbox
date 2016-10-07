@@ -8,5 +8,5 @@ Rails.application.routes.draw do
 
   root "devtools#index"
 
-  resources :users, only: [:show]
+  resources :users, only: [:show, :index, :destroy]
 end

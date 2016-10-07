@@ -28,10 +28,17 @@ class ReviewsController < ApplicationController
  end
 
  def destroy
-   @devtool = Devtool.find(params[:review[:devtool_id]])
-   @review = Review.find(params[:id])
-   @review.destroy
-   redirect_to devtool_path(@devtool)
+   @devtool = Devtool.find(params[:id])
+   @reviews = Review.all
+   @reviews.each do |review|
+     if review.destroy
+       flash[:success] = 'Review Successfully Deleted!'
+       redirect_to devtool_path(@devtool)
+     else
+       flash[:errors] = extripate.errors
+       redirect_to devtool_path(@devtool)
+     end
+  end
  end
 
   private

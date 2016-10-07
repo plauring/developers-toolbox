@@ -18,7 +18,7 @@
 
       <h1>Reviews</h1>
       <div> <% @reviews.each do |review| %></div>
-        <li><%= review.title %><%= link_to 'delete #{review.title}', devtool_review_path(@devtool), method: :delete %></li>
+        <li><%= review.title %><%= link_to "delete #{review.title}", devtool_review_path(@devtool), method: :delete %></li>
         <li><%= review.body %></li>
         <li> <%= review.rating %></li>
       <% end %>
