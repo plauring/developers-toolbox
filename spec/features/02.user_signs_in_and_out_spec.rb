@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-feature 'user signs in and out', %{
+feature 'user signs in and out', %(
   As an authenticated user
   I want to be able to Sign In
   and Sign Out as I please
-} do
+) do
   context 'After Signing up initially I want to' do
     let!(:user2) { FactoryGirl.create(:user) }
     before do
