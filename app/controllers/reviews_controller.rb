@@ -33,11 +33,10 @@ class ReviewsController < ApplicationController
    @reviews.each do |review|
      if review.destroy
        flash[:success] = 'Review Successfully Deleted!'
-       redirect_to devtool_path(@devtool)
      else
-       flash[:errors] = extripate.errors
-       redirect_to devtool_path(@devtool)
+       flash[:errors] = @devtool.errors
      end
+    redirect_to devtool_path(@devtool)
   end
  end
 
