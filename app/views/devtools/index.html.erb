@@ -1,3 +1,9 @@
+<h1>Devtools</h1>
+
+<%= form_tag(devtools_path, method: :get) do %>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", title: nil %>
+<% end %>
 <% @devtools.each do |devtool|%>
   <li><%= link_to devtool.title, devtool_path(devtool) %></li>
 <% end %>

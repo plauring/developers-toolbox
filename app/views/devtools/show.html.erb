@@ -4,6 +4,9 @@
 
   <div> Dev Tool description <%= @devtool.body %></div>
   <div> Dev Tool's Github <%= @devtool.github_link %></div>
+  <p>
+    Post's Average Rating: <%= @averageRate %> out of 5.0
+  </p>
 
   <h1>Reviews</h1>
   <div> <% @reviews.each do |review| %></div>

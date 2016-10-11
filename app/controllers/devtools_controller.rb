@@ -1,11 +1,12 @@
 class DevtoolsController < ApplicationController
   def index
-    @devtools = Devtool.all
+    @devtools = Devtool.search(params[:search])
   end
 
   def show
     @devtool = Devtool.find(params[:id])
     @reviews = @devtool.reviews
+    @averageRate = Devtool.rate(@devtool)
   end
 
   def new
@@ -26,7 +27,7 @@ class DevtoolsController < ApplicationController
   private
 
     def devtool_params
-      params.require(:devtool).permit(:title, :body, :github_link)
+      params.require(:devtool).permit(:title, :body, :github_link, :search)
     end
 
 end
