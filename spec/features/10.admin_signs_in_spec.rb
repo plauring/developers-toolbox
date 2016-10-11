@@ -8,10 +8,11 @@ feature 'Admin signs into website' do
     scenario 'I can sign in and see a special message on the homepage' do
       devtool = FactoryGirl.create(:devtool)
       visit root_path
-      expect(page).to have_content( %{
+      expect(page).to have_content(%{
         Welcome Super Elite Group 8 member,
         you are a member of an exclusive, Clandestine,
-        and Dope AF club.} )
+        and Dope AF club.
+        })
         expect(page).to have_content("#{devtool.title} delete")
     end
     scenario 'I can delete an item from the index page' do

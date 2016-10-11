@@ -1,6 +1,5 @@
 require 'rails_helper'
 
-
 feature 'A user can add a review to a Dev Tool' do
   let!(:devtool1) { FactoryGirl.create(:devtool, id: 1) }
   let!(:review1) { FactoryGirl.create(:review, devtool_id: 1) }
@@ -40,5 +39,4 @@ feature 'A user can add a review to a Dev Tool' do
       expect(page).to have_content('Rating is not a number')
     end
   end
-  Warden.test_reset!
 end
