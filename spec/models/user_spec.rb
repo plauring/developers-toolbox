@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe User do
-  let!(:user) { User.create(name: 'partybody200', email:'2hard2party@example.com', password:'123qwe' ) }
+  let!(:user) { User.create(name:'partybody200', email:'2hard2party@example.com', password:'123qwe' ) }
   it 'is valid with valid attributes' do
     expect(user).to be_valid
   end

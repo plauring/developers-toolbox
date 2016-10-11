@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 feature 'authenticated user edits profile information' do
-
   let!(:user2) { FactoryGirl.create(:user) }
 
   scenario 'visits profile page and edits email' do

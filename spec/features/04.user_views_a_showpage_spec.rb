@@ -1,7 +1,6 @@
 require 'rails_helper'
 require 'pry'
 
-
 feature 'View one dev tool on a unique show page' do
 
   let!(:devtool1) { FactoryGirl.create(:devtool, id: 1) }
@@ -26,5 +25,4 @@ feature 'View one dev tool on a unique show page' do
       expect(page).to have_content('You must be signed in to post a review')
     end
   end
-
 end

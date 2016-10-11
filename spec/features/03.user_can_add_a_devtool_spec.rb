@@ -2,7 +2,6 @@ require 'rails_helper'
 
 feature 'A user can add a new dev tool' do
   context 'An authenticated user can add a dev tool' do
-
     before do
       user2 = FactoryGirl.create(:user)
       login_as(user2, scope: :user, run_callbacks: false)
@@ -27,7 +26,6 @@ feature 'A user can add a new dev tool' do
       expect(page).to have_content('COOL GEM')
       expect(page).to have_content('COOL GEM BODY')
       expect(page).to have_content('COOL GEM LINK')
-
     end
 
     scenario 'The user fills out the form incorrectly' do
