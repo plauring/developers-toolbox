@@ -2,14 +2,14 @@ require 'rails_helper'
 
 feature 'A user can add a new dev tool' do
   context 'An authenticated user can add a dev tool' do
+    let!(:devtool1) { FactoryGirl.create(:devtool) }
+    let!(:devtool2) { FactoryGirl.create(:devtool) }
     before do
       user2 = FactoryGirl.create(:user)
       login_as(user2, scope: :user, run_callbacks: false)
       visit new_devtool_path
     end
 
-    let!(:devtool1) { FactoryGirl.create(:devtool) }
-    let!(:devtool2) { FactoryGirl.create(:devtool) }
     scenario 'The new page has a title, body and github text area' do
       expect(page).to have_content('Title')
       expect(page).to have_content('Body')
@@ -17,7 +17,6 @@ feature 'A user can add a new dev tool' do
     end
 
     scenario 'The user fills out the new devtool form correctly' do
-
       fill_in('Title', with: 'COOL GEM')
       fill_in('Body', with: 'COOL GEM BODY')
       fill_in('Github link', with: 'COOL GEM LINK')

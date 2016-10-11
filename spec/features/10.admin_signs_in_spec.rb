@@ -13,7 +13,7 @@ feature 'Admin signs into website' do
         you are a member of an exclusive, Clandestine,
         and Dope AF club.
         })
-        expect(page).to have_content("#{devtool.title} delete")
+      expect(page).to have_content("#{devtool.title} delete")
     end
     scenario 'I can delete an item from the index page' do
       tool = FactoryGirl.create(:devtool)
