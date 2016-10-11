@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   root "devtools#index"
-  resources :devtools, only: [:index, :show, :new, :create] do
-    resources :reviews, only: [:new, :create]
+  resources :devtools, only: [:index, :show, :new, :create, :destroy] do
+    resources :reviews, only: [:new, :create, :destroy]
   end
+
+  resources :users, only: [:show, :index, :destroy]
 
   resources :reviews, only: [:new, :create] do
     member do
@@ -10,12 +12,5 @@ Rails.application.routes.draw do
     end
   end
 
-  # resources :reviews do
-  #   post 'upvote'
-  # end
-
   devise_for :users
-
-  resources :users
-
 end
