@@ -1,13 +1,15 @@
 <h1><%= @devtool.title %></h1>
 
-  <div> Dev Tool description <%= @devtool.body %></div>
-  <div> Dev Tool's Github <%= @devtool.github_link %></div>
+  <div> Dev Tool description: <%= @devtool.body %></div>
+  <div> Dev Tool's Github: <%= @devtool.github_link %></div>
 
   <h1>Reviews</h1>
+  <% @count = 0  %>
   <div> <% @reviews.each do |review| %></div>
-    <li><%= review.title %></li>
-    <li><%= review.body %></li>
-    <li> <%= review.rating %></li>
+    <% @count += 1 %>
+    <li>Review title: <%= review.title %></li>
+    <li>Review Body: <%= review.body %></li>
+    <li>Rating: <%= review.rating %></li>
     <% review.votes.each do |vote| %>
       <% if vote.status == true  %>
         <% @upvote = review.votes.length %>
@@ -17,16 +19,14 @@
 
     <% end %>
 
-    <div class="vote-buttons">
-      <div id="upcount"><%= pluralize(@upvote ||= 0, "upvote") %></div>
-      <%= button_to "upvote", upvote_review_path(review.id), class: 'upvoteButton' %>
+    <div class="vote-buttons<%= @count %>">
+      <div id="upcount<%=@count%>"><%= pluralize(@upvote ||= 0, "upvote") %></div>
+      <div><%= button_to "upvote", upvote_review_path(review.id), class: "upvoteButton", id: "#{@count}" %></div>
 
-      <div id="downcount"><%= pluralize(@downvote ||= 0, "downvote") %></div>
-      <%= button_to "downvote", downvote_review_path(review.id), class: "downvoteButton" %>
-
+      <div id="downcount<%=@count%>"><%= pluralize(@downvote ||= 0, "downvote") %></div>
+      <div><%= button_to "downvote", downvote_review_path(review.id), class: "downvoteButton", id: "#{@count}" %></div>
     </div>
-    <div id="sum">sum of votes: <%= @upvote.to_i - @downvote.to_i %></div>
-
+    <div id="sum<%=@count%>">sum of votes: <%= @upvote.to_i - @downvote.to_i %></div>
 
   <% end %>
 
