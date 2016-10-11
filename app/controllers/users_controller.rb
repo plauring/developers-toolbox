@@ -30,7 +30,7 @@ class UsersController < ApplicationController
    redirect_to users_path
   end
 
-private
+  private
 
   def authorize_user
     if !user_signed_in? || !current_user.admin?
