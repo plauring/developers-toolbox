@@ -1,0 +1,13 @@
+<img src='http://gianthamster.com/wp-content/uploads/2010/03/2010_03_01_05_tCaplinWalk.jpg'/>
+
+<h1> <%= @user.name %>'s Profile </h1>
+
+  <h6>Your info</h6>
+<ul>
+  <li><%= @user.name %></li>
+  <li><%= @user.email %></li>
+  <li>Member since: <%= @user.created_at %></li>
+
+</ul>
+
+<%= link_to 'Edit your profile', edit_user_registration_path %>

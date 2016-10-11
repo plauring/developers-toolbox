@@ -1,6 +1,10 @@
+ruby:
+  config_file: .rubocop.yml
+
 AllCops:
   Exclude:
     - db/schema.rb
+    - config/initializers/devise.rb
   #DisplayCopNames: true
 
 AccessorMethodName:
@@ -119,7 +123,7 @@ LineEndConcatenation:
   Enabled: false
 
 LineLength:
-  Max: 80
+  Max: 200
 
 MethodLength:
   Enabled: false
@@ -261,18 +265,3 @@ Void:
 
 Style/AlignParameters:
   EnforcedStyle: with_fixed_indentation
-
-Style/SymbolProc:
-  Enabled: false
-
-Style/MultilineOperationIndentation:
-  EnforcedStyle: indented
-
-Style/EmptyLinesAroundBlockBody:
-  Enabled: false
-
-Style/UnneededPercentQ:
-  Enabled: false
-
-Metrics/AbcSize:
-  Enabled: false
