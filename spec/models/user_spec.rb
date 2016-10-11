@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe User do
-  let!(:user) {User.create(name: 'partybody200', email:'2hard2party@example.com', password:'123qwe' )}
+  let!(:user) { User.create(name: 'partybody200', email:'2hard2party@example.com', password:'123qwe' ) }
   it 'is valid with valid attributes' do
     expect(user).to be_valid
   end
@@ -10,17 +10,20 @@ describe User do
     expect(User.create(
       name: '',
       email: '2hard2party@example.com',
-      password: '123qwe')).to_not be_valid
+      password: '123qwe')
+      ).to_not be_valid
 
     expect(User.create(
       name: 'partybody200',
       email: '',
-      password: '123qwe')).to_not be_valid
+      password: '123qwe')
+      ).to_not be_valid
 
     expect(User.create(
-    name: 'partybody200',
-    email: '2hard2party@example.com',
-    password: '')).to_not be_valid
+      name: 'partybody200',
+      email: '2hard2party@example.com',
+      password: '')
+      ).to_not be_valid
   end
 
   it 'has a matching password confirmation for the password' do

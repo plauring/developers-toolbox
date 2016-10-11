@@ -6,15 +6,13 @@ feature 'Admin signs into website' do
     end
 
     scenario 'I can sign in and see a special message on the homepage' do
-      devtools = FactoryGirl.create_list(:devtool, 5 )
+      devtool = FactoryGirl.create(:devtool)
       visit root_path
-      expect(page).to have_content( %Q{
+      expect(page).to have_content( %{
         Welcome Super Elite Group 8 member,
         you are a member of an exclusive, Clandestine,
         and Dope AF club.} )
-      devtools.each do |devtool|
-        expect(page).to have_content('delete')
-      end
+        expect(page).to have_content("#{devtool.title} delete")
     end
     scenario 'I can delete an item from the index page' do
       tool = FactoryGirl.create(:devtool)
@@ -24,14 +22,14 @@ feature 'Admin signs into website' do
     end
     scenario 'I can visit a Dev Tools page and delete it' do
       tool = FactoryGirl.create(:devtool)
-      visit devtool_path(tool.id)
+      visit devtool_path(tool)
       click_link 'delete'
       expect(page).to have_content('Dev Tool Successfully Deleted!')
     end
     scenario 'I can delete reviews from a Dev Tools page' do
       tool = FactoryGirl.create(:devtool)
       review = FactoryGirl.create(:review, devtool: tool)
-      visit devtool_path(tool.id)
+      visit devtool_path(tool)
       click_link "delete #{review.title}"
       expect(page).to have_content('Review Successfully Deleted!')
       expect(page).to_not have_content(review.title)
@@ -62,7 +60,7 @@ feature 'Admin signs into website' do
     end
     scenario 'I cannot see special delete messages on a devtools review page' do
       tool = FactoryGirl.create(:devtool)
-      visit devtool_path(tool.id)
+      visit devtool_path(tool)
       expect(page).to_not have_content('delete')
     end
   end

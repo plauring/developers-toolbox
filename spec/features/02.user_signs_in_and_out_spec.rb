@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'user signs in and out', %Q{
+feature 'user signs in and out', %{
   As an authenticated user
   I want to be able to Sign In
   and Sign Out as I please

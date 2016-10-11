@@ -8,7 +8,7 @@ feature 'A user can add a review to a Dev Tool' do
     before do
       user2 = FactoryGirl.create(:user)
       login_as(user2, scope: :user, run_callbacks: false)
-      visit new_devtool_review_path(devtool1.id)
+      visit new_devtool_review_path(devtool1)
     end
     scenario 'The new review page has a title, and body' do
       expect(page).to have_content('Title')

@@ -1,5 +1,4 @@
 feature 'user click on add devtool' do
-
   context 'As and authenticated user' do
     before do
       user2 = FactoryGirl.create(:user)
