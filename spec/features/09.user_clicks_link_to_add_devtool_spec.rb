@@ -16,7 +16,7 @@ feature 'user click on add devtool' do
     end
   end
   context 'As an unauthenticated user' do
-    scenario 'I can click the link because Im an american, but it will only give me an error' do
+    scenario 'I can click the link, but it will only give me an error' do
       visit root_path
       click_link 'Add New Dev Tool'
 

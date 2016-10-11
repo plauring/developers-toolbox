@@ -1,29 +1,20 @@
-<% if (current_user.nil? || user_signed_in?) && (current_user.nil? || !current_user.admin?) %>
-  <h1><%= @devtool.title %></h1>
+<h1><%= @devtool.title %></h1>
+  <% if !current_user.nil? && current_user.admin? %>
+    <%= link_to 'delete', @devtool, method: :delete %>
+  <% end %>
 
-    <div> Dev Tool description <%= @devtool.body %></div>
-    <div> Dev Tool's Github <%= @devtool.github_link %></div>
+<div> Dev Tool description <%= @devtool.body %></div>
+<div> Dev Tool's Github<a href="<%=@devtool.github_link%>" </a><%=@devtool.github_link%></div>
 
-    <h1>Reviews</h1>
-    <div> <% @reviews.each do |review| %></div>
-      <li><%= review.title %></li>
-      <li><%= review.body %></li>
-      <li> <%= review.rating %></li>
+<h1>Reviews</h1>
+<div> <% @reviews.each do |review| %></div>
+  <li><%= review.title %>
+    <% if !current_user.nil? && current_user.admin? %>
+    <%= link_to "delete #{review.title}", devtool_review_path(@devtool), method: :delete %>
     <% end %>
-  <% elsif current_user.admin? %>
-    <h1><%= @devtool.title %> <%= link_to 'delete', @devtool, method: :delete %></h1>
-
-      <div> Dev Tool description <%= @devtool.body %></div>
-      <div> Dev Tool's Github <%= @devtool.github_link %></div>
-
-      <h1>Reviews</h1>
-      <div> <% @reviews.each do |review| %></div>
-        <li><%= review.title %><%= link_to "delete #{review.title}", devtool_review_path(@devtool), method: :delete %></li>
-        <li><%= review.body %></li>
-        <li> <%= review.rating %></li>
-      <% end %>
-
+  </li>
+  <li><%= review.body %></li>
+  <li> <%= review.rating %></li>
 <% end %>
-
 
 <div><%= link_to 'New Review', new_devtool_review_path(@devtool) %></div>

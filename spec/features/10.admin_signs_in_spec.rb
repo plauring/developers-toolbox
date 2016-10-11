@@ -10,7 +10,7 @@ feature 'Admin signs into website' do
       visit root_path
       expect(page).to have_content( %Q{
         Welcome Super Elite Group 8 member,
-        you are a member of an exclusive, Clandestineand,
+        you are a member of an exclusive, Clandestine,
         and Dope AF club.} )
       devtools.each do |devtool|
         expect(page).to have_content('delete')

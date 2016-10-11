@@ -28,5 +28,3 @@ feature 'View one dev tool on a unique show page' do
   end
 
 end
-
-Warden.test_reset!

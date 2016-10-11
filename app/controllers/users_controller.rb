@@ -19,16 +19,14 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @users = User.all
-    @users.each do |user|
-      if user.admin?
+    @user = User.find(params[:id])
+      if @user.admin?
         flash[:error] = "You do not have the authority to complete this action"
-      elsif user.destroy
+      elsif @user.destroy
         flash[:success] = "User deleted, we didn't like them anyway."
       else
-        flash[:errors] = user.errors
+        flash[:errors] = @user.errors
       end
-   end
    redirect_to users_path
   end
 

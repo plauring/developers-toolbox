@@ -1,12 +1,13 @@
-<% if (current_user.nil? || user_signed_in?) && (current_user.nil? || !current_user.admin?) %>
-  <% @devtools.each do |devtool|%>
-    <li><%= link_to devtool.title, devtool_path(devtool) %></li>
-  <% end %>
-<% elsif current_user.admin? %>
-  <h1>Welcome Super Elite Group 8 member, you are a member of an exclusive, Clandestineand, and Dope AF club.</h1>
-  <% @devtools.each do |devtool|%>
-    <li><%= link_to devtool.title, devtool_path(devtool) %> <%= link_to 'delete', devtool, method: :delete %> </li>
-  <% end %>
+<% if !current_user.nil? && current_user.admin? %>
+  <h1>Welcome Super Elite Group 8 member, you are a member
+    of an exclusive, Clandestine, and Dope AF club.</h1>
+<% end %>
+<% @devtools.each do |devtool|%>
+  <li><%= link_to devtool.title, devtool_path(devtool) %>
+    <% if !current_user.nil? && current_user.admin? %>
+      <%= link_to 'delete', devtool, method: :delete %>
+    <% end %>
+  </li>
 <% end %>
 
 <div><%= link_to "Add New Dev Tool", new_devtool_path %></div>
