@@ -6,17 +6,19 @@ feature 'user signs in and out', %{
   and Sign Out as I please
 } do
   context 'After Signing up initially I want to' do
-    let!(:user2)  { FactoryGirl.create(:user) }
+    let!(:user2) { FactoryGirl.create(:user) }
     before do
       login_as(user2, scope: :user, run_callbacks: false)
       visit root_path
     end
+
     scenario 'sign out successfully' do
       click_link 'Sign Out'
       expect(page).to have_content('Signed out successfully.')
       expect(page).to have_content('Sign In')
       expect(page).to_not have_content('Sign Out')
     end
+
     scenario 'sign in successfully' do
       click_link 'Sign Out'
       click_link 'Sign In'
@@ -51,8 +53,3 @@ feature 'user signs in and out', %{
     end
   end
 end
-
-
-#You're already signed in
-#Invalid username or password
-#You need to sign in or sign up before continuing.
