@@ -46,10 +46,7 @@ class ReviewsController < ApplicationController
 
   def review_params
     params.require(:review).permit(:title, :body, :rating)
-<<<<<<< HEAD
-=======
   end
->>>>>>> cb1a9ede72bf91ba5ca6692078f22ab56b023694
 
   def authorize_user
     if !user_signed_in? || !current_user.admin?
