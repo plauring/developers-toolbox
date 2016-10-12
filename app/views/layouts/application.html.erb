@@ -12,9 +12,11 @@
     <nav>
       <ul>
         <% if user_signed_in? %>
+          <% unless current_user.profile_picture.blank? %>
+          <%= image_tag(current_user.profile_picture.url(:thumb)) %>
+          <% end %>
           <li> <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %> </li>
           <li> <%= link_to 'Your Profile', user_path(current_user) %>
-          <%= image_tag(current_user.profile_picture.url(:thumb)) %>
         <% else %>
           <li> <%= link_to 'Sign Up', new_user_registration_path %> </li>
           <li> <%= link_to 'Sign In', new_user_session_path %> </li>
