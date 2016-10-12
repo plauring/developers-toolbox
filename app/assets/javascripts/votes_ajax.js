@@ -8,9 +8,10 @@ $(document).ready (function() {
 
     var request = $.ajax({
       url: `${targetReview}.json`,
-      method: 'POST',
-
+      type: 'POST',
     });
+
+
     request.done(function(data) {
       document.getElementById(`upcount${id}`).innerHTML = `${data.upvotes} upvotes`;
       document.getElementById(`downcount${id}`).innerHTML = `${data.downvotes} downvotes`;
@@ -19,15 +20,16 @@ $(document).ready (function() {
 
   });
 
+
   $(`.downvoteButton`).on('click', function(event) {
     event.preventDefault();
-    var targetReview = this.parentElement.action
+    var targetReview = this.parentElement.action;
     var currentTarget = $(event.currentTarget);
     var id = this.id;
 
     var request = $.ajax({
       url: `${targetReview}.json`,
-      method: 'POST',
+      type: 'POST',
 
     });
 

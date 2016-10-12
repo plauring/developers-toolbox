@@ -29,8 +29,8 @@ class ReviewsController < ApplicationController
 
   def upvote
     @review = Review.find(params[:id])
-    @user = User.all
-    @user.each do |user|
+    @users = User.all
+    @users.each do |user|
       @user = user.id
         if Vote.find_by(user_id: @user, review_id: @review.id).nil?
           Vote.create(user_id: @user, review_id: @review.id, status: true)
@@ -57,13 +57,14 @@ class ReviewsController < ApplicationController
           format.json { render :json => { upvotes: @upvote_count.length, downvotes: @downvote_count.length, sumvotes: (@upvote_count.length - @downvote_count.length) } }
           format.js
         end
+        redirect_to(devtools_path)
   end
     #!IMPORTANT NOTICE: Until devise functionality is merged and we can use 'current_user' we are using User.all[0] as a stop gap.
 
   def downvote
     @review = Review.find(params[:id])
-    @user = User.all
-    @user.each do |user|
+    @users = User.all
+    @users.each do |user|
       @user = user.id
         if Vote.find_by(user_id: @user, review_id: @review.id).nil?
           Vote.create(user_id: @user, review_id: @review.id, status: false)
@@ -90,6 +91,7 @@ class ReviewsController < ApplicationController
           format.json { render :json => { downvotes: @downvote_count.length, upvotes: @upvote_count.length, sumvotes: (@upvote_count.length - @downvote_count.length) } }
           format.js
         end
+        redirect_to(devtools_path)
   end
 
   def destroy
