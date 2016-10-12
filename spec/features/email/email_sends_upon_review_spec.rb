@@ -2,10 +2,10 @@ require 'rails_helper'
 
 feature 'email to Dev Tool page creator' do
   scenario 'user reviews a dev tool' do
-    devtool = FactoryGirl.create(:devtool)
     user = FactoryGirl.create(:user)
+    devtool = FactoryGirl.create(:devtool, user_id: user.id)
 
-    sign_in_as(user)
+    login_as(user, scope: :user, run_callbacks: false)
 
     visit new_devtool_review_path(devtool)
 

@@ -1,5 +1,6 @@
 class Devtool < ActiveRecord::Base
   has_many :reviews
+  belongs_to :user
 
   validates :title, uniqueness: true, presence: true
   validates :body, uniqueness: true, presence: true
