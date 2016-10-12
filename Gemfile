@@ -13,7 +13,8 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.5'
 gem 'devise'
 gem 'carrierwave'
-gem 'fog-aws'
+gem 'mini_magick'
+gem 'fog'
 
 group :development, :test do
   gem 'byebug', platform: :mri

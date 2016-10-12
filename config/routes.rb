@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root "devtools#index"
 
   resources :devtools, only: [:index, :show, :new, :create, :destroy] do
     resources :reviews, only: [:new, :create, :destroy]
@@ -6,7 +7,6 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  root "devtools#index"
 
-  resources :users, only: [:show, :index, :destroy]
+  resources :users, only: [:show, :index, :create, :destroy]
 end

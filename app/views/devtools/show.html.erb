@@ -10,7 +10,7 @@
 <div> <% @reviews.each do |review| %></div>
   <li><%= review.title %>
     <% if !current_user.nil? && current_user.admin? %>
-    <%= link_to "delete #{review.title}", devtool_review_path(@devtool), method: :delete %>
+      <%= link_to "delete #{review.title}", devtool_review_path(@devtool, review), method: :delete %>
     <% end %>
   </li>
   <li><%= review.body %></li>
