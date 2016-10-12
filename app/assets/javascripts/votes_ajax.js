@@ -8,7 +8,7 @@ $(document).ready (function() {
 
     var request = $.ajax({
       url: `${targetReview}.json`,
-      type: 'POST',
+      method: 'POST',
     });
 
 
@@ -29,7 +29,7 @@ $(document).ready (function() {
 
     var request = $.ajax({
       url: `${targetReview}.json`,
-      type: 'POST',
+      method: 'POST',
 
     });
 
