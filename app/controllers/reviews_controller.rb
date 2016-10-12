@@ -20,7 +20,7 @@ class ReviewsController < ApplicationController
 
 
     if @review.save
-      ReviewMailer.new_review(@review).deliver_later
+      ReviewMailer.new_review(@review).deliver_now
       flash[:notice] = "Review added successfully"
       redirect_to devtool_path(@devtool)
     else
