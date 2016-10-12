@@ -10,9 +10,9 @@ feature 'View one dev tool on a unique show page' do
       visit devtool_path(devtool1.id)
     end
     scenario "A dev tool and it's average rating is seen on a unique page" do
-      @averageRating = (review1.rating + review2.rating)/2
+      @average_rating = (review1.rating + review2.rating)/2
       expect(page).to have_content('Average Rating')
-      expect(page).to have_content(@averageRating)
+      expect(page).to have_content(@average_rating)
     end
   end
 end

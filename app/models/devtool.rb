@@ -7,19 +7,19 @@ class Devtool < ActiveRecord::Base
 
   def self.rate(devtool)
     @reviews = devtool.reviews
-    @totalRating = 0
+    @total_rating = 0
     @reviews.each do |review|
-      @totalRating += review.rating.to_f
+      @total_rating += review.rating.to_f
     end
 
-    @averageRating = (@totalRating / @reviews.length)
-    @averageRating
+    @average_rating = (@total_rating / @reviews.length)
+    @average_rating
   #   call the foreign key in our reviews table and pull the rating from each foreign key then average it.
   end
 
   def self.search(search)
     if search
-        where('title iLIKE ?', "%#{search}%").order('id DESC')
+      where('title iLIKE ?', "%#{search}%").order('id DESC')
     else
       order('id DESC')
     end
