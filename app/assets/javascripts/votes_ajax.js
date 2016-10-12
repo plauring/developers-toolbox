@@ -20,7 +20,7 @@ $(document).ready (function() {
 
   $(`.downvoteButton`).on('click', function(event) {
     event.preventDefault();
-    var targetReview = this.parentElement.action
+    var targetReview = this.parentElement.action;
     var currentTarget = $(event.currentTarget);
     var id = this.id;
 

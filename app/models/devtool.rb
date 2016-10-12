@@ -11,7 +11,7 @@ class Devtool < ActiveRecord::Base
     @reviews.each do |review|
       @total_rating += review.rating.to_f
     end
-
+    binding.pry
     @average_rating = (@total_rating / @reviews.length)
     @average_rating
   #   call the foreign key in our reviews table and pull the rating from each foreign key then average it.
