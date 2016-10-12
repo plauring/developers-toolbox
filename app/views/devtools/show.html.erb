@@ -19,21 +19,29 @@
     <li>Review Body: <%= review.body %></li>
     <li>Rating: <%= review.rating %></li>
 
-    <% review.votes.each do |vote| %>
-      <% if vote.status == true  %>
-        <% @upvote = review.votes.length %>
-        <% else %>
-        <% @downvote = review.votes.length %>
+  <% @upvote_array = [] %>
+  <% @downvote_array = [] %>
+  <% @votes = review.votes %>
+
+    <% @votes.each do |vote| %>
+      <% if vote.status == true %>
+        <% @upvote_array << vote %>
+      <% else %>
+        <% @downvote_array << vote %>
       <% end %>
     <% end %>
 
+    <% @upvotes = @upvote_array.length %>
+    <% @downvotes = @downvote_array.length %>
+
+
     <div class="vote-buttons<%= review.id %>">
-      <div id="upcount<%= review.id %>"><%= pluralize(@upvote ||= 0, "upvote") %></div>
+      <div id="upcount<%= review.id %>"><%= pluralize(@upvotes ||= 0, "upvote") %></div>
       <%= button_to "upvote", upvote_review_path(review.id), method: :post, remote: true, class: "upvoteButton", id: "#{ review.id }" %>
 
-      <div id="downcount<%= review.id %>"><%= pluralize(@downvote ||= 0, "downvote") %></div>
+      <div id="downcount<%= review.id %>"><%= pluralize(@downvotes ||= 0, "downvote") %></div>
       <%= button_to "downvote", downvote_review_path(review.id), method: :post, remote: true, class: "downvoteButton", id: "#{ review.id }" %>
     </div>
-    <div id="sum<%= review.id %>">sum of votes: <%= @upvote.to_i - @downvote.to_i %></div>
+    <div id="sum<%= review.id %>">sum of votes: <%= @upvotes.to_i - @downvotes.to_i %></div>
   <% end %>
 <div><%= link_to 'New Review', new_devtool_review_path(@devtool) %></div>
