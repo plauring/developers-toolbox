@@ -1,12 +1,8 @@
-$(document).ready (function() {
-
-  $(`.upvoteButton`).on('click', function(event) {
-    event.preventDefault();
-    var targetReview = this.parentElement.action;
-    var id = this.id;
-
+function upvoteButton () {
+  event.preventDefault();
+    var id = event.currentTarget.id;
     var request = $.ajax({
-      url: `${targetReview}.json`,
+      url: `/reviews/${id}/upvote.json`,
       method: 'POST',
       error: function() {
         alert('Please sign in!');
@@ -18,26 +14,24 @@ $(document).ready (function() {
       document.getElementById(`downcount${id}`).innerHTML = `${data.downvotes} downvotes`;
       document.getElementById(`sum${id}`).innerHTML = `sum of votes: ${data.sumvotes}`;
     });
-  });
+  };
 
-  $(`.downvoteButton`).on('click', function(event) {
+  function downvoteButton () {
     event.preventDefault();
-    var targetReview = this.parentElement.action;
-    var id = this.id;
+      var id = event.currentTarget.id;
+      var request = $.ajax({
+        url: `/reviews/${id}/downvote.json`,
+        method: 'POST',
+        error: function() {
+          alert('Please sign in!');
+        }
+      });
 
-    var request = $.ajax({
-      url: `${targetReview}.json`,
-      method: 'POST',
-      error: function() {
-        alert('Please sign in!');
-      }
-    });
+      request.done(function(data) {
+        document.getElementById(`upcount${id}`).innerHTML = `${data.upvotes} upvotes`;
+        document.getElementById(`downcount${id}`).innerHTML = `${data.downvotes} downvotes`;
+        document.getElementById(`sum${id}`).innerHTML = `sum of votes: ${data.sumvotes}`;
+      });
+    };
 
-    request.done(function(data) {
-      document.getElementById(`upcount${id}`).innerHTML = `${data.upvotes} upvotes`;
-      document.getElementById(`downcount${id}`).innerHTML = `${data.downvotes} downvotes`;
-      document.getElementById(`sum${id}`).innerHTML = `sum of votes: ${data.sumvotes}`;
-    });
-
-  });
-});
+  

@@ -20,9 +20,8 @@ class App extends Component {
 	  .done(data => {
 	    this.setState({ devtools: data.devtools })
     })
-    var intervalID = setInterval(this.timer, 1000);
-    this.setState({ intervalID: intervalID });
-	}
+  }
+
 
 
   render() {
