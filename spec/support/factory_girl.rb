@@ -2,15 +2,17 @@ require 'factory_girl_rails'
 
 FactoryGirl.define do
   factory :user do
-    sequence(:username) { |n| "PartyBoy200#{n}" }
-    sequence(:email) { |n| "partyboy200#{n}@example.com"}
+    sequence(:name) { |n| "PartyBoy200#{n}" }
+    sequence(:email) { |n| "partyeva#{n}@launchacademy.com" }
+    profile_picture 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/5c/5cd3cdae01e76fa0ad460e1573ea030a07bb4dd7_full.jpg'
+    sequence(:password) { |n| "123#{n}4567" }
   end
 
   factory :devtool do
     sequence(:title) { |n| "Tool #{n}" }
     sequence(:body) { |n| "This is a body #{n}" }
     sequence(:github_link) { |n| "githubissocool@#{n}" }
-    sequence(:id) { |n| n}
+    sequence(:id) { |n| n }
   end
 
   factory :review do

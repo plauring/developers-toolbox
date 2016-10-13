@@ -1,0 +1,17 @@
+<h1> Super Secret Admin User List</h1>
+<div class="admins">
+  <ul>
+    <% @admins.each do |admin| %>
+    <li> <%= admin.name %> - <%= admin.email %> </li>
+    <% end %>
+  </ul>
+
+</div>
+
+<div class="users">
+  <ul>
+  <% @non_admins.each do |user| %>
+  <li> <%= user.name %> - <%= user.email %> <%= link_to "delete #{user.name}" , user_path(user), method: :delete %> </li>
+  <% end %>
+  </ul>
+</div>
