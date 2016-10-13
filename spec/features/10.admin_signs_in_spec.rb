@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 feature 'Admin signs into website' do
   context 'As an Admin' do
     before do

@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20161006142803) do
     t.integer  "review_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean  "status"
     t.index ["review_id"], name: "index_votes_on_review_id", using: :btree
     t.index ["user_id"], name: "index_votes_on_user_id", using: :btree
   end

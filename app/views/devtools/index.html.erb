@@ -2,6 +2,7 @@
   <h1>Welcome Super Elite Group 8 member, you are a member
     of an exclusive, Clandestine, and Dope AF club.</h1>
 <% end %>
+
 <% @devtools.each do |devtool|%>
   <li><%= link_to devtool.title, devtool_path(devtool) %>
     <% if !current_user.nil? && current_user.admin? %>

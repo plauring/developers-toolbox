@@ -31,6 +31,7 @@ class DevtoolsController < ApplicationController
     end
   end
 
+
   def destroy
     @devtool = Devtool.find(params[:id])
     dead_reviews = Review.where(devtool_id: params[:id] )

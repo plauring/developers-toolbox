@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 feature 'A user can add a review to a Dev Tool' do
-  let!(:devtool1) { FactoryGirl.create(:devtool, id: 1) }
-  let!(:review1) { FactoryGirl.create(:review, devtool_id: 1) }
   context 'An authenticated user can add a review to a dev tool' do
+    let!(:devtool1) { FactoryGirl.create(:devtool, id: 1) }
+    let!(:review1) { FactoryGirl.create(:review, devtool_id: 1) }
+    let!(:user5) { FactoryGirl.create(:user) }
     before do
-      user2 = FactoryGirl.create(:user)
-      login_as(user2, scope: :user, run_callbacks: false)
+      login_as(user5, scope: :user, run_callbacks: false)
       visit new_devtool_review_path(devtool1)
     end
     scenario 'The new review page has a title, and body' do
