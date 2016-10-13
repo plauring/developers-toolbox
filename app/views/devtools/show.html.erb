@@ -38,7 +38,6 @@
     <% @upvotes = @upvote_array.length %>
     <% @downvotes = @downvote_array.length %>
 
-
     <div class="vote-buttons<%= review.id %>">
       <div id="upcount<%= review.id %>"><%= pluralize(@upvotes ||= 0, "upvote") %></div>
       <%= button_to "upvote", upvote_review_path(review.id), method: :post, remote: true, class: "upvoteButton", id: "#{ review.id }" %>
