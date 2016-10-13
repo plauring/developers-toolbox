@@ -11,7 +11,9 @@ class Devtool < ActiveRecord::Base
     @reviews.each do |review|
       @total_rating += review.rating.to_f
     end
-    @average_rating = (@total_rating / @reviews.count)
+    if @reviews.count != 0
+      @average_rating = (@total_rating / @reviews.count)
+    end
     @average_rating
   end
 
