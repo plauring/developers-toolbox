@@ -58,7 +58,7 @@ feature 'A user can upvote and downvote buttons reviews' do
   end
 
   context "multiple users log in and vote" do
-    scenario 'Two users vote up' do
+    scenario 'Two different users vote up' do
       user2 = FactoryGirl.create(:user)
       user3 = FactoryGirl.create(:user)
       login_as(user2)
@@ -71,7 +71,7 @@ feature 'A user can upvote and downvote buttons reviews' do
       expect(page).to have_content("sum of votes: 2")
     end
 
-    scenario 'Two users vote down' do
+    scenario 'Two different users vote down' do
       user2 = FactoryGirl.create(:user)
       user3 = FactoryGirl.create(:user)
       login_as(user2)

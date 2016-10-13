@@ -9,6 +9,9 @@ $(document).ready (function() {
     var request = $.ajax({
       url: `${targetReview}.json`,
       method: 'POST',
+      error: function() {
+        alert('Please sign in!');
+      }
     });
 
 
@@ -30,7 +33,9 @@ $(document).ready (function() {
     var request = $.ajax({
       url: `${targetReview}.json`,
       method: 'POST',
-
+      error: function() {
+        alert('Please sign in!');
+      }
     });
 
     request.done(function(data) {
