@@ -6,7 +6,8 @@ feature 'user can search for devtools from index page' do
     devtool3 = FactoryGirl.create(:devtool)
     devtool4 = FactoryGirl.create(:devtool)
     visit devtools_path
-    fill_in 'Search', with: devtool3.title
+    fill_in 'search', with: devtool3.title
+    click_button 'Search'
     expect(page).to have_content(devtool3.title)
     expect(page).to_not have_content(devtool4.title)
   end
@@ -15,7 +16,8 @@ feature 'user can search for devtools from index page' do
     devtool3 = FactoryGirl.create(:devtool)
     devtool4 = FactoryGirl.create(:devtool)
     visit devtools_path
-    fill_in 'Search', with: 'Happy Days'
+    fill_in 'search', with: 'Happy Days'
+    click_button 'Search'
     expect(page).to_not have_content(devtool3.title)
     expect(page).to_not have_content(devtool4.title)
   end
