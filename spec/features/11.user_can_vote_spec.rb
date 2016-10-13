@@ -8,7 +8,6 @@ feature 'A user can upvote and downvote buttons reviews' do
     before  do
       user1 = FactoryGirl.create(:user)
       login_as(user1)
-      # binding.pry
       visit devtool_path(devtool1.id)
     end
 
