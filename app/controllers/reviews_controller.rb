@@ -17,7 +17,6 @@ class ReviewsController < ApplicationController
     @devtool = Devtool.find(params[:devtool_id])
     @review = Review.new(review_params)
     @review.devtool = @devtool
-
      if @review.save
       flash[:notice] = "Review added successfully"
         redirect_to devtool_path(@devtool)
@@ -31,32 +30,31 @@ class ReviewsController < ApplicationController
     @review = Review.find(params[:id])
     @users = current_user
     @user = @users.id
-      if Vote.find_by(user_id: @user, review_id: @review.id).nil?
-        Vote.create(user_id: @user, review_id: @review.id, status: true)
+    if Vote.find_by(user_id: @user, review_id: @review.id).nil?
+      Vote.create(user_id: @user, review_id: @review.id, status: true)
+    else
+      if Vote.find_by(user_id: @user, review_id: @review.id).status == true
+        Vote.find_by(user_id: @user, review_id: @review.id).destroy
       else
-        if Vote.find_by(user_id: @user, review_id: @review.id).status == true
-          Vote.find_by(user_id: @user, review_id: @review.id).destroy
-        else
-          Vote.find_by(user_id: @user, review_id: @review.id).update(status: true)
-        end
+        Vote.find_by(user_id: @user, review_id: @review.id).update(status: true)
       end
-      @votes_for_review = @review.votes
-      @upvote_count = []
-      @downvote_count = []
-        @votes_for_review.each do |vote|
-          if vote.status == true
-            @upvote_count << vote
-          else
-            @downvote_count << vote
-          end
-        end
-        respond_to do |format|
-          format.html { redirect_to :back }
-          format.json { render :json => { upvotes: @upvote_count.length, downvotes: @downvote_count.length, sumvotes: (@upvote_count.length - @downvote_count.length) } }
-          format.js
-        end
+    end
+    @votes_for_review = @review.votes
+    @upvote_count = []
+    @downvote_count = []
+    @votes_for_review.each do |vote|
+      if vote.status == true
+        @upvote_count << vote
+      else
+        @downvote_count << vote
+      end
+    end
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.json { render :json => { upvotes: @upvote_count.length, downvotes: @downvote_count.length, sumvotes: (@upvote_count.length - @downvote_count.length) } }
+      format.js
+    end
   end
-    #!IMPORTANT NOTICE: Until devise functionality is merged and we can use 'current_user' we are using User.all[0] as a stop gap.
 
   def downvote
     @review = Review.find(params[:id])
@@ -71,21 +69,21 @@ class ReviewsController < ApplicationController
           Vote.find_by(user_id: @user, review_id: @review.id).update(status: false)
         end
       end
-      @votes_for_review = @review.votes
-      @downvote_count = []
-      @upvote_count = []
-        @votes_for_review.each do |vote|
-          if vote.status == false
-            @downvote_count << vote
-          else
-            @upvote_count << vote
-          end
-        end
-        respond_to do |format|
-          format.html { redirect_to :back }
-          format.json { render :json => { downvotes: @downvote_count.length, upvotes: @upvote_count.length, sumvotes: (@upvote_count.length - @downvote_count.length) } }
-          format.js
-        end
+    @votes_for_review = @review.votes
+    @downvote_count = []
+    @upvote_count = []
+    @votes_for_review.each do |vote|
+      if vote.status == false
+        @downvote_count << vote
+      else
+        @upvote_count << vote
+      end
+    end
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.json { render :json => { downvotes: @downvote_count.length, upvotes: @upvote_count.length, sumvotes: (@upvote_count.length - @downvote_count.length) } }
+      format.js
+    end
   end
 
   def destroy

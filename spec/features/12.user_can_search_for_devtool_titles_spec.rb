@@ -1,6 +1,7 @@
 require 'rails_helper'
 require 'pry'
 
+# COMMENTED OUT BECAUSE THIS FEATURE IS ON ANOTHER BRANCH
 # feature 'user can search for devtools from index page' do
 #   scenario "user visits index page and searches for a devtool" do
 #     devtool3 = FactoryGirl.create(:devtool)
@@ -20,3 +21,4 @@ require 'pry'
 #     expect(page).to_not have_content(devtool4.title)
 #   end
 # end
+# COMMENTED OUT BECAUSE THIS FEATURE IS ON ANOTHER BRANCH
