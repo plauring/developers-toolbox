@@ -3,18 +3,20 @@
     <%= link_to 'delete', @devtool, method: :delete %>
   <% end %>
 
-<div> Dev Tool description <%= @devtool.body %></div>
-<div> Dev Tool's Github<a href="<%=@devtool.github_link%>" </a><%=@devtool.github_link%></div>
+<div> Dev Tool description <%= @devtool.body %> </div>
+<div> Dev Tool's Github <%= link_to 'Github link', @devtool.github_link %> </div>
 
 <h1>Reviews</h1>
 <div> <% @reviews.each do |review| %></div>
-  <li><%= review.title %>
-    <% if !current_user.nil? && current_user.admin? %>
-      <%= link_to "delete #{review.title}", devtool_review_path(@devtool, review), method: :delete %>
-    <% end %>
-  </li>
-  <li><%= review.body %></li>
-  <li> <%= review.rating %></li>
+  <ul>
+    <li><%= review.title %>
+      <% if !current_user.nil? && current_user.admin? %>
+        <%= link_to "delete #{review.title}", devtool_review_path(@devtool, review), method: :delete %>
+      <% end %>
+    </li>
+    <li><%= review.body %></li>
+    <li> <%= review.rating %></li>
+  </ul>
 <% end %>
 
 <div><%= link_to 'New Review', new_devtool_review_path(@devtool) %></div>
