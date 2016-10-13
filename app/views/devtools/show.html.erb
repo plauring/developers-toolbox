@@ -4,7 +4,7 @@
   <% end %>
 
   <div> Dev Tool description <%= @devtool.body %></div>
-  <div> Dev Tool's Github<a href="<%=@devtool.github_link%>" ></a><%=@devtool.github_link%></div>
+  <div> Dev Tool's Github <%= link_to @devtool.github_link, @devtool.github_link %> </div>
   <p>
     Post's Average Rating: <%= @averageRate %> out of 5.0
   </p>
@@ -19,6 +19,7 @@
         <%= link_to "delete #{review.title}", devtool_review_path(@devtool, review), method: :delete %>
       <% end %>
     </li>
+
     <li>Review Body: <%= review.body %></li>
     <li>Rating: <%= review.rating %></li>
 
