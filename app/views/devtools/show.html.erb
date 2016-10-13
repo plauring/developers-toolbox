@@ -4,7 +4,7 @@
   <% end %>
 
 <div> Dev Tool description <%= @devtool.body %> </div>
-<div> Dev Tool's Github <%= link_to 'Github link', @devtool.github_link %> </div>
+<div> Dev Tool's Github <%= link_to @devtool.github_link, @devtool.github_link %> </div>
 
 <h1>Reviews</h1>
 <div> <% @reviews.each do |review| %></div>
