@@ -18,7 +18,7 @@ feature 'profile picture' do
 
   scenario 'user views profile page and sees picture' do
     img_src = File.open(File.join(Rails.root, 'spec/support/images/dani.png'))
-    user = User.create(name: 'dani', email: 'specialemail@company.com', password: 'supersecret', profile_picture: img_src )
+    user = User.create(name: 'dani', email: 'specialemail@company.com', password: 'supersecret', profile_picture: img_src)
     login_as(user, scope: :user, run_callbacks: false)
     visit user_path(user)
 

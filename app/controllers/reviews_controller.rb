@@ -13,28 +13,28 @@ class ReviewsController < ApplicationController
     end
   end
 
- def create
-   @devtool = Devtool.find(params[:devtool_id])
-   @review = Review.new(review_params)
-   @review.devtool = @devtool
+  def create
+    @devtool = Devtool.find(params[:devtool_id])
+    @review = Review.new(review_params)
+    @review.devtool = @devtool
 
-   if @review.save
+    if @review.save
       flash[:notice] = 'Review added successfully'
       redirect_to devtool_path(@devtool)
-   else
+    else
       flash[:notice] = @review.errors.full_messages.join(',')
       render :new
-   end
- end
+    end
+  end
 
   def destroy
     @review = Review.find(params[:id])
     @devtool = @review.devtool
-      if @review.destroy
-        flash[:success] = 'Review Successfully Deleted!'
-      else
-        flash[:errors] = @review.errors.full_messages.join(',')
-      end
+    if @review.destroy
+      flash[:success] = 'Review Successfully Deleted!'
+    else
+      flash[:errors] = @review.errors.full_messages.join(',')
+    end
     redirect_to devtool_path(@devtool)
   end
 
