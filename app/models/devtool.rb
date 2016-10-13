@@ -12,7 +12,7 @@ class Devtool < ActiveRecord::Base
       @total_rating += review.rating.to_f
     end
     binding.pry
-    @average_rating = (@total_rating / @reviews.length)
+    @average_rating = (@total_rating / @reviews.count)
     @average_rating
   end
 
