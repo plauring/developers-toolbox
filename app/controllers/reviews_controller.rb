@@ -44,7 +44,6 @@ class ReviewsController < ApplicationController
     @votes_for_review = @review.votes
     @upvote_count = []
     @downvote_count = []
-
     @votes_for_review.each do |vote|
       if vote.status == true
         @upvote_count << vote
