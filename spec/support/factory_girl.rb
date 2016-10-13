@@ -12,7 +12,7 @@ FactoryGirl.define do
     sequence(:title) { |n| "Tool #{n}" }
     sequence(:body) { |n| "This is a body #{n}" }
     sequence(:github_link) { |n| "githubissocool@#{n}" }
-    sequence(:id) { |n| n}
+    sequence(:id) { |n| n }
     sequence(:user_id) { |n| n }
     user
   end

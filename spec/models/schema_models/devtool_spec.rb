@@ -8,9 +8,9 @@ describe Devtool do
     expect(devtool).to be_valid
   end
   it "is not valid with non-valid attributes" do
-    devtool1 = Devtool.new(title: "Anything", body: "" )
-    devtool2 = Devtool.new(title: "", body: "Literally anything at all" )
-    devtool3 = Devtool.new(title: "", body: "" )
+    devtool1 = Devtool.new(title: "Anything", body: "")
+    devtool2 = Devtool.new(title: "", body: "Literally anything at all")
+    devtool3 = Devtool.new(title: "", body: "")
     devtool4 = Devtool.new(title: "Anything", body: "Literally anything at all")
     expect(devtool1).to_not be_valid
     expect(devtool2).to_not be_valid
