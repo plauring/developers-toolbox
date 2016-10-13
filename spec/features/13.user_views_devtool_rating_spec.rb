@@ -7,9 +7,8 @@ feature 'View one dev tool and its rating on a unique show page' do
     review1 = FactoryGirl.create(:review, devtool: devtool1)
     review2 = FactoryGirl.create(:review, devtool: devtool1)
     visit devtool_path(devtool1.id)
-
-    @average_rating = (review1.rating + review2.rating)/2
+    @average_rating = (review1.rating + review2.rating) / 2
     expect(page).to have_content('Average Rating')
-    expect(page).to have_content(@average_rating)    
+    expect(page).to have_content(@average_rating)
   end
 end
