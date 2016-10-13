@@ -3,13 +3,20 @@ require "rails_helper"
 
 describe Devtool do
   it "is valid with valid attributes" do
-    expect(Devtool.new(title: "Anything", body: "Literally anything at all" )).to be_valid
+    user = FactoryGirl.create(:user, id: 1)
+    devtool = Devtool.new(title: "Anything", body: "Literally anything at all", user_id: user.id)
+    expect(devtool).to be_valid
   end
-
+  binding.pry
   it "is not valid with non-valid attributes" do
-    expect(Devtool.new(title: "Anything", body: "" )).to_not be_valid
-    expect(Devtool.new(title: "", body: "Literally anything at all" )).to_not be_valid
-    expect(Devtool.new(title: "", body: "" )).to_not be_valid
+    devtool1 = Devtool.new(title: "Anything", body: "" )
+    devtool2 = Devtool.new(title: "", body: "Literally anything at all" )
+    devtool3 = Devtool.new(title: "", body: "" )
+    devtool4 = Devtool.new(title: "Anything", body: "Literally anything at all")
+    expect(devtool1).to_not be_valid
+    expect(devtool2).to_not be_valid
+    expect(devtool3).to_not be_valid
+    expect(devtool4).to_not be_valid
   end
 
 end

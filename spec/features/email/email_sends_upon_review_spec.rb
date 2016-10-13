@@ -8,12 +8,10 @@ feature 'email to Dev Tool page creator' do
     login_as(user, scope: :user, run_callbacks: false)
 
     visit new_devtool_review_path(devtool)
-
     fill_in 'Title', with: 'Factory Girl'
     fill_in 'Rating', with: '5'
     fill_in 'Body', with: 'This development tool is most dope'
     click_button 'Create Review'
-    save_and_open_page
     expect(page).to have_content('This development tool is most dope')
     expect(ActionMailer::Base.deliveries.count).to eq(1)
   end

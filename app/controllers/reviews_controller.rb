@@ -17,6 +17,7 @@ class ReviewsController < ApplicationController
     @devtool = Devtool.find(params[:devtool_id])
     @review = Review.new(review_params)
     @review.devtool = @devtool
+    @review.user = current_user
     if @review.save
       ReviewMailer.new_review(@review).deliver_now
       flash[:notice] = "Review added successfully"

@@ -14,14 +14,16 @@ FactoryGirl.define do
     sequence(:github_link) { |n| "githubissocool@#{n}" }
     sequence(:id) { |n| n}
     sequence(:user_id) { |n| n }
+    user
   end
 
   factory :review do
     sequence(:title) { |n| "Best thing ever!!#{n}!!" }
     sequence(:body) { |n| "I love this dev tool for reasons #{n}" }
-    sequence(:devtool_id) { |n| n }
     sequence(:rating) { rand(1..5) }
+    sequence(:devtool_id) { |n| n }
     sequence(:user_id) { |n| n }
     devtool
+    user
   end
 end
