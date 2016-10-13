@@ -7,7 +7,6 @@ describe Devtool do
     devtool = Devtool.new(title: "Anything", body: "Literally anything at all", user_id: user.id)
     expect(devtool).to be_valid
   end
-  binding.pry
   it "is not valid with non-valid attributes" do
     devtool1 = Devtool.new(title: "Anything", body: "" )
     devtool2 = Devtool.new(title: "", body: "Literally anything at all" )
@@ -18,5 +17,4 @@ describe Devtool do
     expect(devtool3).to_not be_valid
     expect(devtool4).to_not be_valid
   end
-
 end
