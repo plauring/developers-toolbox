@@ -17,12 +17,12 @@ gem 'mini_magick'
 gem 'fog'
 gem "font-awesome-rails"
 gem 'faker'
+gem 'dotenv-rails'
 
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'pry-rails'
   gem 'shoulda-matchers'
-  gem 'dotenv-rails'
 end
 
 group :test do

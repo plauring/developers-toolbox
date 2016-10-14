@@ -1,4 +1,4 @@
-// $(document).ready (function() {
+// $
 //
 //   $(`.upvoteButton`).on('click', function(event) {
 //     event.preventDefault();
