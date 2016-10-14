@@ -1,17 +1,13 @@
-<div id="searchbar", class="field row">
-  <div class="medium-6 columns">
+
 <%= form_tag(devtools_path, method: :get) do %>
-    <%= text_field_tag :search, params[:search], id:"searchbar" %>
-    <%= submit_tag "Search", title: nil, class:"button", id:"submitbutton" %>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", title: nil %>
 <% end %>
-</div>
-</div>
 
 <% if !current_user.nil? && current_user.admin? %>
   <h1>Welcome Super Elite Group 8 member, you are a member
     of an exclusive, Clandestine, and Dope AF club.</h1>
 <% end %>
-
 <% if @searched_devtools != nil %>
   <% @searched_devtools.each do |devtool|%>
     <li>
@@ -25,11 +21,9 @@
 
 <div id="app"> </div>
 
+<div><%= link_to "Add New Dev Tool", new_devtool_path %></div>
 
-
-<%= link_to "Add New Dev Tool", new_devtool_path, class:"expanded button" %>
-
-<div class="hidden">
+<div id="hidden">
   <% if @devtools != nil %>
     <% @devtools.each do |devtool|%>
       <li><%= link_to devtool.title, devtool_path(devtool) %>

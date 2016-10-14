@@ -1,7 +1,5 @@
 
   <%= form_for [@devtool, @review] do |f| %>
-  <div class="row">
-    <div class="medium-6 columns">
     <%= f.label :title %>
     <%= f.text_field :title %>
 
@@ -11,7 +9,5 @@
     <%= f.label :rating %>
     <%= f.text_field :rating %>
 
-    <%= f.submit "Create Review", class:"button" %>
-  </div>
-</div>
+    <%= f.submit "Create Review" %>
   <% end %>

@@ -1,30 +1,22 @@
 <h1>Add A Dev Tool for review:</h1>
 <%= form_for (@devtool) do |f| %>
 
-  <div class="row">
-    <div class="medium-6 columns">
+  <div>
     <%= f.label :title %>
     <%= f.text_field :title %>
   </div>
-</div>
 
-<div class="row">
-  <div class="medium-6 columns">
+  <div>
     <%= f.label :body %>
     <%= f.text_area :body %>
   </div>
-</div>
 
-  <div class="row">
-    <div class="medium-6 columns">
+  <div>
     <%= f.label :github_link %>
     <%= f.text_field :github_link %>
   </div>
-</div>
 
-  <div class="row">
-    <div class="medium-6 columns">
-    <%= f.submit "Add Dev Tool", class:"button" %>
+  <div>
+    <%= f.submit "Add Dev Tool" %>
   </div>
-</div>
 <% end %>

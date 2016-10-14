@@ -12,7 +12,7 @@ function upvoteButton () {
     request.done(function(data) {
       document.getElementById(`upcount${id}`).innerHTML = `${data.upvotes} upvotes`;
       document.getElementById(`downcount${id}`).innerHTML = `${data.downvotes} downvotes`;
-      document.getElementById(`sum${id}`).innerHTML = `${data.sumvotes}`;
+      document.getElementById(`sum${id}`).innerHTML = `sum of votes: ${data.sumvotes}`;
     });
   };
 
@@ -30,6 +30,8 @@ function upvoteButton () {
       request.done(function(data) {
         document.getElementById(`upcount${id}`).innerHTML = `${data.upvotes} upvotes`;
         document.getElementById(`downcount${id}`).innerHTML = `${data.downvotes} downvotes`;
-        document.getElementById(`sum${id}`).innerHTML = `${data.sumvotes}`;
+        document.getElementById(`sum${id}`).innerHTML = `sum of votes: ${data.sumvotes}`;
       });
     };
+
+  
