@@ -2,10 +2,11 @@ class DevtoolsController < ApplicationController
   before_action :authorize_user, except:[:index, :show, :new, :create]
 
   def index
-    if params[:search] != ""
-      @devtools = Devtool.search(params[:search])
+    @devtools = Devtool.all
+    if params[:search]
+      @searched_devtools = Devtool.search(params[:search])
     else
-      @devtools = []
+      @searched_devtools = []
     end
   end
 

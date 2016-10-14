@@ -8,8 +8,8 @@
   <h1>Welcome Super Elite Group 8 member, you are a member
     of an exclusive, Clandestine, and Dope AF club.</h1>
 <% end %>
-<% if @devtools != nil %>
-  <% @devtools.each do |devtool|%>
+<% if @searched_devtools != nil %>
+  <% @searched_devtools.each do |devtool|%>
     <li>
       <%= link_to devtool.title, devtool_path(devtool) %>
       <% if !current_user.nil? && current_user.admin? %>
@@ -22,3 +22,15 @@
 <div id="app"> </div>
 
 <div><%= link_to "Add New Dev Tool", new_devtool_path %></div>
+
+<div id="hidden">
+  <% if @devtools != nil %>
+    <% @devtools.each do |devtool|%>
+      <li><%= link_to devtool.title, devtool_path(devtool) %>
+        <% if !current_user.nil? && current_user.admin? %>
+          <%= link_to 'delete', devtool, method: :delete %>
+        <% end %>
+      </li>
+    <% end %>
+  <% end %>
+</div>

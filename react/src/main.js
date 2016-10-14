@@ -9,3 +9,7 @@ $(function() {
     document.getElementById('app')
   );
 });
+
+$(document).ready (function() {
+  $('#hidden').hide();
+});
