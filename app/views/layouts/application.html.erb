@@ -10,18 +10,17 @@
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
   </head>
-
-  <body>
+  <div id="back">
+  <body id="page">
     <nav class="menu">
-    <nav>
-      <ul>
+      <ul class="menu">
         <% if !current_user.nil? && current_user.admin? %>
-          <%= link_to 'List of Users', users_path %>
+        <li><%= link_to 'List of Users', users_path %></li>
         <% end %>
         <% if user_signed_in? %>
-          <% unless current_user.profile_picture.blank? %>
-          <%= image_tag(current_user.profile_picture.url(:thumb)) %>
-          <% end %>
+        <% unless current_user.profile_picture.blank? %>
+        <li><%= image_tag(current_user.profile_picture.url(:thumb)) %></li>
+        <% end %>
           <li> <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %> </li>
           <li> <%= link_to 'Your Profile', user_path(current_user) %>
         <% else %>
@@ -29,12 +28,14 @@
           <li> <%= link_to 'Sign In', new_user_session_path %> </li>
         <% end %>
         <li><%= link_to "Home", root_path %></li>
+      </ul>
   </nav>
 
     <% flash.each do |key, value| %>
       <%= value %>
     <% end %>
-    <%= yield %>
+    <div><%= yield %></div>
 
   </body>
+</div>
 </html>

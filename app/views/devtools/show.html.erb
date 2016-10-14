@@ -1,28 +1,31 @@
-<div class="callout primary"><h1><%= @devtool.title %></h1>
+<div id="devtool", class="callout primary">
+  <h1 class="header"><%= @devtool.title %></h1>
   <% if !current_user.nil? && current_user.admin? %>
     <%= link_to 'delete', @devtool, method: :delete %>
   <% end %>
+  <div class="showtext">
+  <div><h6 class="subheads"> Dev Tool description: </h6> <%= @devtool.body %></div>
+  <div id="linktext"><h6 class="subheads"> Dev Tool's Github: </h6> <%= link_to @devtool.github_link, @devtool.github_link %> </div>
+    <div><h6 class="subheads">Post's Average Rating: </h6> <%= @averageRate %> out of 5.0</div>
 
-  <div> Dev Tool description <%= @devtool.body %></div>
-  <div> Dev Tool's Github <%= link_to @devtool.github_link, @devtool.github_link %> </div>
-  <p>
-    Post's Average Rating: <%= @averageRate %> out of 5.0
-  </p>
 </div>
+</div>
+
+
 
   <div class="callout secondary", id="review_master_block"><h1>Reviews</h1>
 
   <div class="callout secondary"> <div><% @reviews.each do |review| %></div>
-
+    <div class="showtext"
     <li>
-      Review title: <%= review.title %>
+      <h6 class="subheads">Review Title: </h6> <%= review.title %>
       <% if !current_user.nil? && current_user.admin? %>
         <%= link_to "delete #{review.title}", devtool_review_path(@devtool, review), method: :delete %>
       <% end %>
     </li>
 
-    <li>Review Body: <%= review.body %></li>
-    <li>Rating: <%= review.rating %></li>
+    <li><h6 class="subheads">Review Body: </h6> <%= review.body %></li>
+    <li><h6 class="subheads">Rating: </h6> <%= review.rating %></li>
 
   <% @upvote_array = [] %>
   <% @downvote_array = [] %>
@@ -40,13 +43,15 @@
     <% @downvotes = @downvote_array.length %>
 
     <div class="vote-buttons<%= review.id %>">
-      <div id="upcount<%= review.id %>"><%= pluralize(@upvotes ||= 0, "upvote") %></div>
-      <button type="button" name="upbutton" onClick="upvoteButton()" id="<%= review.id %>">upvote</button>
-      <div id="downcount<%= review.id %>"><%= pluralize(@downvotes ||= 0, "downvote") %></div>
-      <button type="button" name="downbutton" onClick="downvoteButton()" id="<%= review.id %>">downvote</button>
+      <div class="hidden", id="upcount<%= review.id %>"><%= pluralize(@upvotes ||= 0, "upvote") %></div>
+      <button type="button" name="upbutton" onClick="upvoteButton()" id="<%= review.id %>"><i class="fa fa-chevron-circle-up"></i></button>
+      <div id="sum<%= review.id %>"><%= @upvotes.to_i - @downvotes.to_i %></div>
+      <div class="hidden", id="downcount<%= review.id %>"><%= pluralize(@downvotes ||= 0, "downvote") %></div>
+      <button type="button" name="downbutton" onClick="downvoteButton()" id="<%= review.id %>"><i class="fa fa-chevron-circle-down"></i></button>
     </div>
-    <div id="sum<%= review.id %>">sum of votes: <%= @upvotes.to_i - @downvotes.to_i %></div>
   <% end %>
 </div>
 </div>
-<div><%= link_to 'New Review', new_devtool_review_path(@devtool) %></div>
+</div>
+
+<%= link_to 'New Review', new_devtool_review_path(@devtool), class:"expanded button" %>
