@@ -28,6 +28,7 @@ class DevtoolsController < ApplicationController
 
   def create
     @devtool = Devtool.new(devtool_params)
+    @devtool.user = current_user
     if @devtool.save
       flash[:notice] = "Devtool added successfully"
       redirect_to devtool_path(@devtool.id)

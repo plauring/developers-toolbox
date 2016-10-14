@@ -15,6 +15,7 @@ gem 'devise'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog'
+gem 'faker'
 
 group :development, :test do
   gem 'byebug', platform: :mri
