@@ -1,4 +1,4 @@
-<h1><%= @devtool.title %></h1>
+<div class="callout primary"><h1><%= @devtool.title %></h1>
   <% if !current_user.nil? && current_user.admin? %>
     <%= link_to 'delete', @devtool, method: :delete %>
   <% end %>
@@ -8,10 +8,11 @@
   <p>
     Post's Average Rating: <%= @averageRate %> out of 5.0
   </p>
+</div>
 
-  <h1>Reviews</h1>
+  <div class="callout secondary", id="review_master_block"><h1>Reviews</h1>
 
-  <div> <% @reviews.each do |review| %></div>
+  <div class="callout secondary"> <div><% @reviews.each do |review| %></div>
 
     <li>
       Review title: <%= review.title %>
@@ -41,11 +42,13 @@
 
     <div class="vote-buttons<%= review.id %>">
       <div id="upcount<%= review.id %>"><%= pluralize(@upvotes ||= 0, "upvote") %></div>
-      <%= button_to "upvote", upvote_review_path(review.id), method: :post, remote: true, class: "upvoteButton", id: "#{ review.id }" %>
+      <i class="fa fa-chevron-circle-up"><%= button_to "upvote", upvote_review_path(review.id), method: :post, remote: true, class: "upvoteButton", id: "#{ review.id }" %></i>
 
       <div id="downcount<%= review.id %>"><%= pluralize(@downvotes ||= 0, "downvote") %></div>
       <%= button_to "downvote", downvote_review_path(review.id), method: :post, remote: true, class: "downvoteButton", id: "#{ review.id }" %>
     </div>
     <div id="sum<%= review.id %>">sum of votes: <%= @upvotes.to_i - @downvotes.to_i %></div>
   <% end %>
+</div>
+</div>
 <div><%= link_to 'New Review', new_devtool_review_path(@devtool) %></div>

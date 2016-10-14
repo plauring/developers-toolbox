@@ -1,16 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>ReviewSite8</title>
-    <%= csrf_meta_tags %>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
+    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
   </head>
 
   <body>
-    <nav>
-      <ul>
+    <nav class="menu">
         <% if user_signed_in? %>
           <% unless current_user.profile_picture.blank? %>
           <%= image_tag(current_user.profile_picture.url(:thumb)) %>
@@ -21,13 +23,13 @@
           <li> <%= link_to 'Sign Up', new_user_registration_path %> </li>
           <li> <%= link_to 'Sign In', new_user_session_path %> </li>
         <% end %>
-        <div><%= link_to "Home", root_path %></div>
-      </ul>
+        <li><%= link_to "Home", root_path %></li>
+  </nav>
 
-    </nav>
     <% flash.each do |key, value| %>
       <%= value %>
     <% end %>
     <%= yield %>
+
   </body>
 </html>

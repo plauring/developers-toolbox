@@ -15,6 +15,8 @@ gem 'devise'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog'
+gem "font-awesome-rails"
+
 
 group :development, :test do
   gem 'byebug', platform: :mri
