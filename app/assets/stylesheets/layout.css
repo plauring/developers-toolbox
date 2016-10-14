@@ -1,0 +1,15 @@
+nav {
+
+  background-color: #343838;
+}
+li {
+  list-style: none;
+}
+#searchbar{
+  margin-bottom: 0;
+}
+
+#submitbutton{
+  margin-top: 0;
+  display: inline-block;
+}

@@ -1,13 +1,17 @@
+<div id="user_show" class="field row">
+  <div class="medium-6 medium-centered columns">
 <%= image_tag(current_user.profile_picture) %>
 
 <h1> <%= @user.name %>'s Profile </h1>
 
-  <h6>Your info</h6>
-<ul>
+    <h6>Your info</h6>
+
   <li><%= @user.name %></li>
   <li><%= @user.email %></li>
   <li>Member since: <%= @user.created_at %></li>
 
-</ul>
 
-<%= link_to 'Edit your profile', edit_user_registration_path %>
+</div>
+</div>
+
+<div class="row"><%= link_to 'Edit your profile', edit_user_registration_path, class: "expanded button" %></div>

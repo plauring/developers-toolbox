@@ -1,36 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>ReviewSite8</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
   </head>
-
-  <body>
-    <nav>
-      <ul>
+  <div id="back">
+  <body id="page">
+    <nav class="menu">
+      <ul class="menu">
         <% if !current_user.nil? && current_user.admin? %>
-          <%= link_to 'List of Users', users_path %>
+        <li><%= link_to 'List of Users', users_path %></li>
         <% end %>
         <% if user_signed_in? %>
-          <% unless current_user.profile_picture.blank? %>
-          <%= image_tag(current_user.profile_picture.url(:thumb)) %>
-          <% end %>
+        <% unless current_user.profile_picture.blank? %>
+        <li><%= image_tag(current_user.profile_picture.url(:thumb)) %></li>
+        <% end %>
           <li> <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %> </li>
           <li> <%= link_to 'Your Profile', user_path(current_user) %>
         <% else %>
           <li> <%= link_to 'Sign Up', new_user_registration_path %> </li>
           <li> <%= link_to 'Sign In', new_user_session_path %> </li>
         <% end %>
-        <div><%= link_to "Home", root_path %></div>
+        <li><%= link_to "Home", root_path %></li>
       </ul>
+  </nav>
 
-    </nav>
     <% flash.each do |key, value| %>
       <%= value %>
     <% end %>
     <%= yield %>
+
   </body>
+</div>
 </html>
