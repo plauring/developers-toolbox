@@ -9,11 +9,11 @@ class App extends Component {
       title: '',
       intervalID: ''
      };
+     this.getDevtools = this.getDevtools.bind(this);
   }
 
-
-  componentDidMount() {
-	  $.ajax({
+  getDevtools() {
+    $.ajax({
 	    url: '/api/devtools',
       contentType: 'application/json'
     })
@@ -22,7 +22,10 @@ class App extends Component {
     })
   }
 
-
+  componentWillMount() {
+    this.getDevtools();
+    setInterval(this.getDevtools, 10000);
+  }
 
   render() {
     return (
