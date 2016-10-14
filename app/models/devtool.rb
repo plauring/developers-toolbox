@@ -22,8 +22,6 @@ class Devtool < ActiveRecord::Base
   def self.search(search)
     if search
       where('title iLIKE ?', "%#{search}%").order('id DESC')
-    else
-      order('id DESC')
     end
   end
 
