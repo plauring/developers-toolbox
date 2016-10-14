@@ -2,7 +2,12 @@ class DevtoolsController < ApplicationController
   before_action :authorize_user, except:[:index, :show, :new, :create]
 
   def index
-    @devtools = Devtool.search(params[:search])
+    @devtools = Devtool.all
+    if params[:search]
+      @searched_devtools = Devtool.search(params[:search])
+    else
+      @searched_devtools = []
+    end
   end
 
   def show
@@ -23,6 +28,7 @@ class DevtoolsController < ApplicationController
 
   def create
     @devtool = Devtool.new(devtool_params)
+    @devtool.user = current_user
     if @devtool.save
       flash[:notice] = "Devtool added successfully"
       redirect_to devtool_path(@devtool.id)

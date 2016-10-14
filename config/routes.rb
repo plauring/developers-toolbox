@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   root "devtools#index"
 
+  namespace :api do
+      resources :devtools, only: [:index, :create, :destroy, :update]
+  end
+
   devise_for :users
 
   resources :users, only: [:show, :index, :create, :destroy]

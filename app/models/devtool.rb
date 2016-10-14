@@ -1,6 +1,8 @@
 class Devtool < ActiveRecord::Base
   has_many :reviews
+  belongs_to :user
 
+  validates :user_id, presence: true
   validates :title, uniqueness: true, presence: true
   validates :body, uniqueness: true, presence: true
   validates :github_link, uniqueness: true
@@ -20,8 +22,6 @@ class Devtool < ActiveRecord::Base
   def self.search(search)
     if search
       where('title iLIKE ?', "%#{search}%").order('id DESC')
-    else
-      order('id DESC')
     end
   end
 

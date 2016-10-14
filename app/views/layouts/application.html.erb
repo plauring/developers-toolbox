@@ -13,6 +13,11 @@
 
   <body>
     <nav class="menu">
+    <nav>
+      <ul>
+        <% if !current_user.nil? && current_user.admin? %>
+          <%= link_to 'List of Users', users_path %>
+        <% end %>
         <% if user_signed_in? %>
           <% unless current_user.profile_picture.blank? %>
           <%= image_tag(current_user.profile_picture.url(:thumb)) %>
