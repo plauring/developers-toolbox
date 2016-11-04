@@ -21,6 +21,4 @@ describe Review do
       expect(Review.new(title: "Title1", body: "Body1", rating: "", devtool_id: "")).to_not be_valid
     end
   end
-
-
 end

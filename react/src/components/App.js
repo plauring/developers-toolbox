@@ -28,12 +28,9 @@ class App extends Component {
   }
 
   render() {
-    var devStyle = {
-      fontSize: "200",
-      textAlign: "center"
-    };
+
     return (
-      <div style={devStyle}>
+      <div>
       <h1>Devtools</h1>
       <DevtoolList
       devtools={this.state.devtools}
