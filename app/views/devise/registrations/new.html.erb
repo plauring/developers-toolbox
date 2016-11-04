@@ -26,44 +26,4 @@
 
 <% end %>
 
-
-
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class='form-inputs'>
-    <%= f.label :avatar_url, 'Avatar' %>
-    <%= f.file_field :avatar_url %>
-    <div class='row'>
-      <div class="medium-6 columns">
-        <%= f.label :first_name %>
-        <%= f.text_field :first_name, required: true, autofocus: true %>
-      </div>
-      <div class="medium-6 columns">
-        <%= f.label :last_name %>
-        <%= f.text_field :last_name, required: true, autofocus: true %>
-      </div>
-      <div class="medium-6 columns">
-        <%= f.label :email %>
-        <%= f.email_field :email, required: true, autofocus:true %><br />
-      </div>
-      <div class="medium-6 columns">
-        <%= f.label :password %>
-        <%= f.password_field :password, required: true %>
-      </div>
-      <div class="medium-6 columns">
-        <%= f.label :password_confirmation, 'Password Confirmation' %>
-        <%= f.password_field :password_confirmation, required: true %>
-      </div>
-    </div>
-  </div>
-
-  <div class='form-actions'>
-  <%= f.submit 'Sign Up', class: "button" %>
-  </div>
-
-<% end %>
-
 <%= render "devise/shared/links" %>
